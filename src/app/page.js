@@ -82,7 +82,7 @@ export default function HomePage() {
           </p>
         </section>
 
-        {/* Tools Grid */}
+        {/* Colored Tools Grid */}
         <section className="mb-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {tools.map((tool) => {
@@ -91,10 +91,14 @@ export default function HomePage() {
                 <Link
                   key={tool.id}
                   href={`/${tool.id}`}
-                  className="group p-6 bg-white rounded-2xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between"
+                  className="group p-6 bg-white rounded-2xl border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between"
                 >
                   <div>
-                    <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-gray-700 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors mb-4">
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-105 ${
+                        tool.bg || 'bg-blue-50'
+                      } ${tool.color || 'text-blue-600'}`}
+                    >
                       {Icon ? <Icon className="w-6 h-6" /> : null}
                     </div>
                     <h2 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
@@ -104,7 +108,11 @@ export default function HomePage() {
                       {tool.description}
                     </p>
                   </div>
-                  <div className="mt-5 text-sm font-semibold text-blue-600 flex items-center">
+                  <div
+                    className={`mt-5 text-sm font-semibold flex items-center ${
+                      tool.color || 'text-blue-600'
+                    }`}
+                  >
                     Open Tool <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
                   </div>
                 </Link>
@@ -113,7 +121,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Professional Value Pillars */}
+        {/* Clean Features Section */}
         <section className="py-12 border-t border-gray-200 max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
             Built for Privacy and Speed
