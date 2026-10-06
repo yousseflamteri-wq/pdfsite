@@ -17,7 +17,7 @@ export default function ContactPage() {
         <form action="https://api.web3forms.com/submit" method="POST" className="space-y-6">
           
           {/* الساروت ديال Web3Forms اللي خديتي دابا */}
-          <input type="hidden" name="access_key" value="23941e46-2f7c-4cbe-9a7c-3d4963b8a144" />
+          <input type="hidden" name="access_key" value="7ca29d58-96be-4f26-8fe7-7259ecd1e73f" />
           
           <input type="hidden" name="redirect" value="https://onlinepdflab.app" />
 
