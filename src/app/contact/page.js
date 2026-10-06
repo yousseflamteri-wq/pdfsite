@@ -2,8 +2,8 @@ import { Mail, Clock, ShieldCheck } from 'lucide-react';
 import { siteUrl } from '../../lib/siteConfig';
 
 export const metadata = {
-  title: 'Contact Us – PDF SaaS Support',
-  description: 'Get in touch with the PDF SaaS engineering and support team.',
+  title: 'Contact Us – PDF Lab Support',
+  description: 'Get in touch with the PDF Lab engineering and support team.',
   alternates: {
     canonical: `${siteUrl}/contact`,
   },
@@ -23,7 +23,7 @@ export default function ContactPage() {
         <div className="bg-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm">
           <Mail className="w-8 h-8 text-blue-600 mx-auto mb-3" />
           <h3 className="font-bold text-gray-800 mb-1">Email Support</h3>
-          <p className="text-sm text-gray-500">support@pdfsaas.com</p>
+          <p className="text-sm text-gray-500">support@pdfLab.com</p>
         </div>
         <div className="bg-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm">
           <Clock className="w-8 h-8 text-green-600 mx-auto mb-3" />
@@ -33,7 +33,7 @@ export default function ContactPage() {
         <div className="bg-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm">
           <ShieldCheck className="w-8 h-8 text-purple-600 mx-auto mb-3" />
           <h3 className="font-bold text-gray-800 mb-1">Privacy Queries</h3>
-          <p className="text-sm text-gray-500">privacy@pdfsaas.com</p>
+          <p className="text-sm text-gray-500">privacy@pdfLab.com</p>
         </div>
       </div>
 

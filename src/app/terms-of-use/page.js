@@ -1,9 +1,9 @@
 import { siteUrl } from '../../lib/siteConfig';
 
 export const metadata = {
-  title: 'Terms of Use – PDF SaaS Legal Guidelines',
+  title: 'Terms of Use – PDF Lab Legal Guidelines',
   description:
-    'Terms of service and legal conditions for using PDF SaaS free client-side PDF utilities. No accounts, no uploads, no data collection.',
+    'Terms of service and legal conditions for using PDF Lab free client-side PDF utilities. No accounts, no uploads, no data collection.',
   alternates: {
     canonical: `${siteUrl}/terms-of-use`,
   },
@@ -21,7 +21,7 @@ export default function TermsOfUsePage() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-3">1. Acceptance of Terms</h2>
           <p>
-            By accessing and utilizing the web utilities on PDF SaaS, you acknowledge and agree to comply with these Terms of Use. If you disagree with any portion of these conditions, you must immediately discontinue using our services.
+            By accessing and utilizing the web utilities on PDF Lab, you acknowledge and agree to comply with these Terms of Use. If you disagree with any portion of these conditions, you must immediately discontinue using our services.
           </p>
         </section>
 
@@ -42,7 +42,7 @@ export default function TermsOfUsePage() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-3">4. Limitation of Liability</h2>
           <p>
-            Under no circumstances shall PDF SaaS or its operators be held responsible for document corruption, loss of records, or secondary damages arising from browser crashes or file manipulation. Users are always advised to retain backup copies of source documents prior to executing batch operations.
+            Under no circumstances shall PDF Lab or its operators be held responsible for document corruption, loss of records, or secondary damages arising from browser crashes or file manipulation. Users are always advised to retain backup copies of source documents prior to executing batch operations.
           </p>
         </section>
       </div>

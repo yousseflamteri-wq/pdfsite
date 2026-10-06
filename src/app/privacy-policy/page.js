@@ -1,9 +1,9 @@
 import { siteUrl } from '../../lib/siteConfig';
 
 export const metadata = {
-  title: 'Privacy Policy – Zero Server Upload Guarantee | PDF SaaS',
+  title: 'Privacy Policy – Zero Server Upload Guarantee | PDF Lab',
   description:
-    'PDF SaaS processes all files 100% in your browser — nothing is uploaded. Read our privacy policy for full details on our zero-data-collection architecture.',
+    'PDF Lab processes all files 100% in your browser — nothing is uploaded. Read our privacy policy for full details on our zero-data-collection architecture.',
   alternates: {
     canonical: `${siteUrl}/privacy-policy`,
   },
@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-3">1. Complete Client-Side Processing Architecture</h2>
           <p>
-            At PDF SaaS, privacy is our foundational architecture rather than an optional setting. Unlike standard online PDF services, all operations—including merging, splitting, compressing, rotating, signing, watermarking, and password encryption—execute <strong>entirely inside your local web browser</strong> using WebAssembly and client-side JavaScript.
+            At PDF Lab, privacy is our foundational architecture rather than an optional setting. Unlike standard online PDF services, all operations—including merging, splitting, compressing, rotating, signing, watermarking, and password encryption—execute <strong>entirely inside your local web browser</strong> using WebAssembly and client-side JavaScript.
           </p>
           <p className="mt-2">
             Your files, pictures, signatures, and credentials are never transmitted over the internet, stored on remote machines, or inspected by our infrastructure.
@@ -55,7 +55,7 @@ export default function PrivacyPolicyPage() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-3">5. Contact Information</h2>
           <p>
-            For any inquiries, feedback, or legal questions regarding our technical privacy guarantees, please reach out to our team at <code>privacy@pdfsaas.com</code>.
+            For any inquiries, feedback, or legal questions regarding our technical privacy guarantees, please reach out to our team at <code>privacy@pdfLab.com</code>.
           </p>
         </section>
       </div>

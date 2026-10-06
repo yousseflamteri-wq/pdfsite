@@ -2,8 +2,8 @@ export const dynamic = "force-static";
 
 export default function manifest() {
   return {
-    name: 'PDF SaaS - Free In-Browser PDF Tools',
-    short_name: 'PDF SaaS',
+    name: 'PDF Lab - Free In-Browser PDF Tools',
+    short_name: 'PDF Lab',
     description: '100% private, client-side online PDF tools suite.',
     start_url: '/',
     display: 'standalone',

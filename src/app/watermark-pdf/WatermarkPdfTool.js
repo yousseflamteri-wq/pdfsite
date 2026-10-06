@@ -232,7 +232,7 @@ export default function WatermarkPdfTool({ faqs }) {
 
         {/* Why Choose Us */}
         <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why Add Watermarks with PDF SaaS?</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why Add Watermarks with PDF Lab?</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="flex items-start space-x-3">
               <ShieldCheck className="w-6 h-6 text-green-500 shrink-0 mt-0.5" />

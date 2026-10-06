@@ -223,7 +223,7 @@ export default function OrganizePdfTool({ faqs }) {
       ],
     },
     why: {
-      title: 'Why Organize PDFs with PDF SaaS?',
+      title: 'Why Organize PDFs with PDF Lab?',
       items: [
         {
           icon: Sparkles,

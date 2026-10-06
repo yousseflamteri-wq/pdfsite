@@ -30,7 +30,7 @@ const faqs = [
     a: 'No. The document is protected with standard PDF user encryption. Standard PDF viewers (such as Adobe Acrobat Reader, Apple Preview, and modern web browsers) will require entering the correct password before granting access to view the pages.',
   },
   {
-    q: 'Does PDF SaaS keep or store my password?',
+    q: 'Does PDF Lab keep or store my password?',
     a: 'Never. Because the entire encryption operation executes locally in your device memory (RAM), your password and document are completely invisible to our servers and any third party.',
   },
   {

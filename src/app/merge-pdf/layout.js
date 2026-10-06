@@ -3,12 +3,12 @@ export const metadata = {
   description:
     'Combine multiple PDF files into one single document in seconds. 100% free, no signup, no watermark, and your files never leave your browser.',
   alternates: {
-    canonical: 'https://pdfsaas.com/merge-pdf',
+    canonical: 'https://pdfLab.com/merge-pdf',
   },
   openGraph: {
     title: 'Merge PDF Files Online Free - No File Upload Required',
     description: 'Join multiple PDFs locally in your browser. Fast, free, and completely confidential.',
-    url: 'https://pdfsaas.com/merge-pdf',
+    url: 'https://pdfLab.com/merge-pdf',
   },
 };
 
@@ -16,7 +16,7 @@ export default function Layout({ children }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'Merge PDF - PDF SaaS',
+    name: 'Merge PDF - PDF Lab',
     applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Any',
     offers: {

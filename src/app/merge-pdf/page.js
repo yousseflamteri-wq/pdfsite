@@ -39,7 +39,7 @@ const faqs = [
   },
   {
     q: 'Do you add any watermark to merged files?',
-    a: 'No. PDF SaaS never adds watermarks, branding, or page limits to your documents. The output is 100% clean and free.',
+    a: 'No. PDF Lab never adds watermarks, branding, or page limits to your documents. The output is 100% clean and free.',
   },
   {
     q: 'Can I merge PDFs on mobile devices?',

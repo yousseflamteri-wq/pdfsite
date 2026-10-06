@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <Link href="/" className="flex items-center space-x-2">
               <span className="bg-blue-600 text-white font-black px-2.5 py-1 rounded-lg text-lg">PDF</span>
-              <span className="font-extrabold text-xl text-gray-900 tracking-tight">SaaS</span>
+              <span className="font-extrabold text-xl text-gray-900 tracking-tight">Lab</span>
             </Link>
 
             <nav className="hidden md:flex items-center space-x-6 text-sm font-semibold text-gray-600">
@@ -74,7 +74,7 @@ export default function RootLayout({ children }) {
               <div className="col-span-2">
                 <div className="flex items-center space-x-2 mb-3">
                   <span className="bg-blue-600 text-white font-black px-2.5 py-0.5 rounded text-sm">PDF</span>
-                  <span className="font-bold text-lg text-gray-900">SaaS</span>
+                  <span className="font-bold text-lg text-gray-900">Lab</span>
                 </div>
                 <p className="text-sm text-gray-500 max-w-sm leading-relaxed mb-4">
                   Free and completely private online PDF tools. All operations run directly in your web browser—no uploads, no server storage, total data confidentiality.

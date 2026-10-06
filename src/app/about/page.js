@@ -4,9 +4,9 @@ import { ShieldCheck, Zap, HeartHandshake } from 'lucide-react';
 import { siteUrl } from '../../lib/siteConfig';
 
 export const metadata = {
-  title: 'About Us – The Mission Behind PDF SaaS',
+  title: 'About Us – The Mission Behind PDF Lab',
   description:
-    'Learn how PDF SaaS eliminates server fees and privacy concerns with local client-side document processing.',
+    'Learn how PDF Lab eliminates server fees and privacy concerns with local client-side document processing.',
   alternates: {
     canonical: `${siteUrl}/about`,
   },
@@ -15,7 +15,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <main className="max-w-4xl mx-auto py-16 px-4 sm:px-6">
-      <h1 className="text-4xl font-extrabold text-gray-900 mb-4">About PDF SaaS</h1>
+      <h1 className="text-4xl font-extrabold text-gray-900 mb-4">About PDF Lab</h1>
       <p className="text-lg text-gray-600 mb-10 leading-relaxed">
         Building private, lightning-fast document management tools that put user security first.
       </p>
@@ -27,7 +27,7 @@ export default function AboutPage() {
             Working with PDF files shouldn&apos;t compromise your confidentiality or force you into pricey recurring subscriptions. Most online tools require you to transmit sensitive personal information, legal contracts, and financial receipts to remote cloud servers, creating potential security vulnerabilities.
           </p>
           <p className="mt-2">
-            <strong>PDF SaaS was created to challenge that convention.</strong> By leveraging the latest WebAssembly and browser sandbox technologies, we run complex document operations entirely on your local machine. Your files never leave your device.
+            <strong>PDF Lab was created to challenge that convention.</strong> By leveraging the latest WebAssembly and browser sandbox technologies, we run complex document operations entirely on your local machine. Your files never leave your device.
           </p>
         </section>
 

@@ -145,7 +145,7 @@ export default function PageNumbersTool({ faqs }) {
       ],
     },
     why: {
-      title: 'Why Add Page Numbers with PDF SaaS?',
+      title: 'Why Add Page Numbers with PDF Lab?',
       items: [
         {
           icon: Sparkles,
