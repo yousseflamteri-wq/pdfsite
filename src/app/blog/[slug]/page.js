@@ -3,18 +3,20 @@ import Link from 'next/link';
 import { blogPosts } from '../../../lib/blogPosts';
 import { siteUrl, siteName } from '../../../lib/siteConfig';
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return blogPosts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-export function generateMetadata({ params }) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const post = blogPosts.find((p) => p.slug === resolvedParams.slug);
+  
   if (!post) return {};
 
   return {
-    title: `${post.title} – ${siteName}`,
+    title: `${post.title} | ${siteName}`,
     description: post.excerpt,
     alternates: {
       canonical: `${siteUrl}/blog/${post.slug}`,
@@ -22,8 +24,9 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function BlogPostPage({ params }) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+export default async function BlogPostPage({ params }) {
+  const resolvedParams = await params;
+  const post = blogPosts.find((p) => p.slug === resolvedParams.slug);
 
   if (!post) {
     notFound();
@@ -80,7 +83,7 @@ export default function BlogPostPage({ params }) {
         <div className="mt-16 pt-8 border-t border-gray-200">
           <div className="bg-gray-50 p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <h3 className="font-bold text-gray-900">Need to execute a PDF task now?</h3>
+              <h3 className="font-bold text-gray-900">Need to process a PDF now?</h3>
               <p className="text-xs text-gray-500">Free, fast, and completely in-browser.</p>
             </div>
             <Link
