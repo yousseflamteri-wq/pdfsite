@@ -61,6 +61,7 @@ export default function RootLayout({ children }) {
               <Link href="/compress-pdf" className="hover:text-green-600 transition-colors">Compress</Link>
               <Link href="/jpg-to-pdf" className="hover:text-yellow-600 transition-colors">JPG to PDF</Link>
               <Link href="/pdf-to-jpg" className="hover:text-purple-600 transition-colors">PDF to JPG</Link>
+              <Link href="/blog" className="hover:text-blue-600 transition-colors">Guides</Link>
             </nav>
           </div>
         </header>
@@ -103,8 +104,9 @@ export default function RootLayout({ children }) {
               </div>
 
               <div>
-                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Legal &amp; Company</h3>
+                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Company &amp; Resources</h3>
                 <div className="flex flex-col space-y-2.5 text-sm text-gray-600">
+                  <Link href="/blog" className="hover:text-blue-600 transition-colors">PDF Guides</Link>
                   <Link href="/privacy-policy" className="hover:text-blue-600 transition-colors">Privacy Policy</Link>
                   <Link href="/terms-of-use" className="hover:text-blue-600 transition-colors">Terms of Use</Link>
                   <Link href="/about" className="hover:text-blue-600 transition-colors">About Us</Link>
@@ -115,7 +117,6 @@ export default function RootLayout({ children }) {
 
             <div className="pt-8 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400">
               <p>© 2026 {siteName}. All rights reserved.</p>
-              <p className="mt-2 sm:mt-0">100% Client-Side In-Memory Processing.</p>
             </div>
           </div>
         </footer>
