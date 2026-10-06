@@ -55,7 +55,7 @@ export default function PrivacyPolicyPage() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-3">5. Contact Information</h2>
           <p>
-            For any inquiries, feedback, or legal questions regarding our technical privacy guarantees, please reach out to our team at <code>privacy@pdfLab.com</code>.
+            For any inquiries, feedback, or legal questions regarding our technical privacy guarantees, please reach out to our team at <code>sevastianbeta@gmail.com</code>.
           </p>
         </section>
       </div>
