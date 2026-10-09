@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 // Loads pdf.js from /public at runtime so the bundler never touches it
 const loadPdfJs = () =>
@@ -102,6 +103,18 @@ export default function PdfToMdTool() {
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-gray-800">Convert PDF to Markdown (.md)</h2>
         <p className="text-gray-500 mt-1">Extract formatted text locally in your browser for Notion, Obsidian, or AI prompts</p>
+      </div>
+
+      {/* التنبيه الخاص بـ OCR */}
+      <div className="bg-blue-50 border border-blue-100 text-blue-800 px-4 py-3 rounded-lg text-sm mb-6 flex items-start gap-3 text-left">
+        <span className="text-xl mt-0.5">💡</span>
+        <p className="leading-relaxed">
+          <strong>Note:</strong> This tool extracts embedded digital text. If your PDF is a scanned document or an image, and the extraction yields no results, please try our{' '}
+          <Link href="/ocr-pdf" className="font-bold underline hover:text-blue-600 transition-colors">
+            OCR PDF Tool
+          </Link>
+          {' '}to recognize the text.
+        </p>
       </div>
 
       <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center bg-gray-50 hover:bg-gray-100 transition">

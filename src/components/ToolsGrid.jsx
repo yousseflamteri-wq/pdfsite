@@ -4,31 +4,38 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { tools } from '../lib/toolsConfig';
 
+// التصنيفات الجداد اللي طلبتي
 const categories = [
   { id: 'all', label: 'All' },
-  { id: 'organize', label: 'Organize PDF' },
-  { id: 'optimize', label: 'Optimize PDF' },
+  { id: 'pdf-to-md', label: 'PDF to MD' },
+  { id: 'ocr', label: 'OCR PDF' },
   { id: 'convert', label: 'Convert PDF' },
   { id: 'edit', label: 'Edit PDF' },
   { id: 'security', label: 'PDF Security' },
 ];
 
-// tool id -> category
+// ربط كل أداة بالتصنيف ديالها باش يخدم الفلتر
 const toolCategory = {
-  'merge-pdf': 'organize',
-  'split-pdf': 'organize',
-  'remove-pages': 'organize',
-  'organize-pdf': 'organize',
-  'compress-pdf': 'optimize',
-  'ocr-pdf': 'optimize',
+  'pdf-to-md': 'pdf-to-md',
+  'ocr-pdf': 'ocr',
+  
+  // أدوات التحويل
   'jpg-to-pdf': 'convert',
   'image-to-pdf': 'convert',
   'pdf-to-jpg': 'convert',
   'pdf-to-text': 'convert',
-  'pdf-to-md': 'convert',
+  
+  // أدوات التعديل (جمعنا فيهم حتى أدوات التنظيم والضغط القديمة باش ما يضيعوش)
   'rotate-pdf': 'edit',
   'add-watermark': 'edit',
   'add-page-numbers': 'edit',
+  'merge-pdf': 'edit',
+  'split-pdf': 'edit',
+  'remove-pages': 'edit',
+  'organize-pdf': 'edit',
+  'compress-pdf': 'edit',
+  
+  // أدوات الحماية
   'sign-pdf': 'security',
   'protect-pdf': 'security',
 };
@@ -43,7 +50,7 @@ export default function ToolsGrid() {
 
   return (
     <section className="mb-20">
-      {/* Category pills */}
+      {/* أزرار التصنيفات (Filters) */}
       <div className="flex flex-wrap justify-center gap-2.5 mb-10">
         {categories.map((cat) => (
           <button
@@ -54,7 +61,7 @@ export default function ToolsGrid() {
             className={`px-5 py-2.5 rounded-full text-sm font-semibold border transition-colors ${
               active === cat.id
                 ? 'bg-gray-900 text-white border-gray-900'
-                : 'bg-white text-gray-700 border-gray-200 hover:border-gray-400'
+                : 'bg-white text-gray-700 border-gray-200 hover:border-gray-400 hover:bg-gray-50'
             }`}
           >
             {cat.label}
@@ -62,7 +69,7 @@ export default function ToolsGrid() {
         ))}
       </div>
 
-      {/* Tools grid */}
+      {/* شبكة الأدوات */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {visibleTools.map((tool) => {
           const Icon = tool.icon;
