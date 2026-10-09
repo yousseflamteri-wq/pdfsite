@@ -1,5 +1,6 @@
 import './globals.css';
 import Link from 'next/link';
+import Navbar from '../components/Navbar';
 import { siteUrl, siteName, defaultDescription } from '../lib/siteConfig';
 
 export const metadata = {
@@ -48,23 +49,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
         {/* Navigation Bar */}
-        <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="bg-blue-600 text-white font-black px-2.5 py-1 rounded-lg text-lg">PDF</span>
-              <span className="font-extrabold text-xl text-gray-900 tracking-tight">Lab</span>
-            </Link>
-
-            <nav className="hidden md:flex items-center space-x-6 text-sm font-semibold text-gray-600">
-              <Link href="/merge-pdf" className="hover:text-blue-600 transition-colors">Merge</Link>
-              <Link href="/split-pdf" className="hover:text-orange-600 transition-colors">Split</Link>
-              <Link href="/compress-pdf" className="hover:text-green-600 transition-colors">Compress</Link>
-              <Link href="/jpg-to-pdf" className="hover:text-yellow-600 transition-colors">JPG to PDF</Link>
-              <Link href="/pdf-to-jpg" className="hover:text-purple-600 transition-colors">PDF to JPG</Link>
-              <Link href="/blog" className="hover:text-blue-600 transition-colors">Guides</Link>
-            </nav>
-          </div>
-        </header>
+        <Navbar />
 
         <div className="flex-1">{children}</div>
 
@@ -92,13 +77,14 @@ export default function RootLayout({ children }) {
                   <Link href="/jpg-to-pdf" className="hover:text-blue-600 transition-colors">JPG to PDF</Link>
                   <Link href="/pdf-to-jpg" className="hover:text-blue-600 transition-colors">PDF to JPG</Link>
                   <Link href="/rotate-pdf" className="hover:text-blue-600 transition-colors">Rotate PDF</Link>
-                  <Link href="/watermark-pdf" className="hover:text-blue-600 transition-colors">Add Watermark</Link>
+                  <Link href="/add-watermark" className="hover:text-blue-600 transition-colors">Add Watermark</Link>
                   <Link href="/sign-pdf" className="hover:text-blue-600 transition-colors">Sign PDF</Link>
                   <Link href="/protect-pdf" className="hover:text-blue-600 transition-colors">Protect PDF</Link>
                   <Link href="/organize-pdf" className="hover:text-blue-600 transition-colors">Organize PDF</Link>
                   <Link href="/add-page-numbers" className="hover:text-blue-600 transition-colors">Add Page Numbers</Link>
                   <Link href="/image-to-pdf" className="hover:text-blue-600 transition-colors">Image to PDF</Link>
                   <Link href="/pdf-to-text" className="hover:text-blue-600 transition-colors">PDF to Text</Link>
+                  <Link href="/pdf-to-md" className="hover:text-blue-600 transition-colors">PDF to Markdown</Link>
                   <Link href="/ocr-pdf" className="hover:text-blue-600 transition-colors">OCR PDF</Link>
                 </div>
               </div>

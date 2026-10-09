@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import { tools } from '../lib/toolsConfig';
+import ToolsGrid from '../components/ToolsGrid';
 import { siteUrl, siteName } from '../lib/siteConfig';
 
 export const metadata = {
@@ -73,7 +72,7 @@ export default function HomePage() {
 
       <div className="max-w-6xl mx-auto py-12 px-4 sm:px-6">
         {/* Simple & Clean Hero Section */}
-        <section className="text-center max-w-3xl mx-auto mb-16">
+        <section className="text-center max-w-3xl mx-auto mb-10">
           <h1 className="text-4xl sm:text-5xl font-black text-gray-900 tracking-tight mb-4">
             Free Online PDF Tools
           </h1>
@@ -82,44 +81,8 @@ export default function HomePage() {
           </p>
         </section>
 
-        {/* Colored Tools Grid */}
-        <section className="mb-20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {tools.map((tool) => {
-              const Icon = tool.icon;
-              return (
-                <Link
-                  key={tool.id}
-                  href={`/${tool.id}`}
-                  className="group p-6 bg-white rounded-2xl border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between"
-                >
-                  <div>
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-105 ${
-                        tool.bg || 'bg-blue-50'
-                      } ${tool.color || 'text-blue-600'}`}
-                    >
-                      {Icon ? <Icon className="w-6 h-6" /> : null}
-                    </div>
-                    <h2 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
-                      {tool.name}
-                    </h2>
-                    <p className="text-sm text-gray-500 leading-relaxed">
-                      {tool.description}
-                    </p>
-                  </div>
-                  <div
-                    className={`mt-5 text-sm font-semibold flex items-center ${
-                      tool.color || 'text-blue-600'
-                    }`}
-                  >
-                    Open Tool <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
+        {/* Category pills + tools grid */}
+        <ToolsGrid />
 
         {/* Clean Features Section */}
         <section className="py-12 border-t border-gray-200 max-w-4xl mx-auto">
