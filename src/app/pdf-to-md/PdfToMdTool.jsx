@@ -101,24 +101,29 @@ export default function PdfToMdTool() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-sm border border-gray-100 my-8">
-      <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">Convert PDF to Markdown (.md)</h2>
-        <p className="text-gray-500 mt-1">Extract formatted text locally in your browser for Notion, Obsidian, or AI prompts</p>
-      </div>
-
-      <div className="bg-blue-50 border border-blue-100 text-blue-800 px-4 py-3 rounded-lg text-sm mb-6 flex items-start gap-3 text-left">
-        <span className="text-xl mt-0.5">💡</span>
-        <p className="leading-relaxed">
-          <strong>Note:</strong> This tool extracts embedded digital text. If your PDF is a scanned document or an image, and the extraction yields no results, please try our{' '}
-          <Link href="/ocr-pdf" className="font-bold underline hover:text-blue-600 transition-colors">
-            OCR PDF Tool
-          </Link>
-          {' '}to recognize the text.
+    <div className="max-w-4xl mx-auto p-6 md:p-8 bg-white rounded-3xl shadow-sm border border-gray-200 my-8">
+      {/* Rich H1 for SEO */}
+      <div className="text-center mb-8">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-3">
+          Convert PDF to Markdown Online – Free & Private
+        </h1>
+        <p className="text-base text-gray-600 max-w-xl mx-auto">
+          Extract formatted text (.md) locally in your browser for Notion, Obsidian, or AI prompts with zero uploads.
         </p>
       </div>
 
-      <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center bg-gray-50 hover:bg-gray-100 transition">
+      <div className="bg-blue-50 border border-blue-100 text-blue-800 px-4 py-3 rounded-2xl text-sm mb-6 flex items-start gap-3 text-left">
+        <span className="text-xl mt-0.5">💡</span>
+        <p className="leading-relaxed">
+          <strong>Note:</strong> This tool extracts embedded digital text. If your PDF is a scanned document or an image, please try our{' '}
+          <Link href="/ocr-pdf" className="font-bold underline hover:text-blue-600 transition-colors">
+            OCR PDF Tool
+          </Link>
+          {' '}to recognize and extract the text first.
+        </p>
+      </div>
+
+      <div className="border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center bg-gray-50 hover:bg-gray-100 transition">
         <input
           type="file"
           accept="application/pdf"
@@ -127,20 +132,21 @@ export default function PdfToMdTool() {
           id="pdf-upload"
         />
         <label htmlFor="pdf-upload" className="cursor-pointer flex flex-col items-center">
-          <span className="text-blue-600 font-medium">Click to select PDF</span>
+          <span className="text-blue-600 font-semibold text-lg">Click to select PDF</span>
           <span className="text-sm text-gray-400 mt-1">or drag & drop your document here</span>
         </label>
-        {file && <p className="mt-3 font-medium text-gray-700">{file.name}</p>}
+        {file && <p className="mt-4 font-semibold text-gray-800 bg-white inline-block px-4 py-1.5 rounded-xl border border-gray-200">{file.name}</p>}
       </div>
 
       {file && !markdown && (
         <div className="text-center mt-6">
           <button
+            type="button"
             onClick={convertToMarkdown}
             disabled={loading}
-            className="px-6 py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
+            className="w-full sm:w-auto px-8 py-3.5 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 shadow-md transition disabled:bg-blue-300"
           >
-            {loading ? 'Processing...' : 'Convert to Markdown'}
+            {loading ? 'Processing Document...' : 'Convert to Markdown'}
           </button>
         </div>
       )}
@@ -148,17 +154,19 @@ export default function PdfToMdTool() {
       {markdown && (
         <div className="mt-8">
           <div className="flex justify-between items-center mb-3">
-            <span className="font-semibold text-gray-700">Markdown Output:</span>
+            <span className="font-bold text-gray-700">Markdown Output:</span>
             <div className="flex gap-2">
               <button
+                type="button"
                 onClick={handleCopy}
-                className="px-3 py-1.5 text-sm bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition"
+                className="px-4 py-2 text-sm font-semibold bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition"
               >
                 {copied ? 'Copied!' : 'Copy'}
               </button>
               <button
+                type="button"
                 onClick={handleDownload}
-                className="px-3 py-1.5 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                className="px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
               >
                 Download .md
               </button>
@@ -168,7 +176,7 @@ export default function PdfToMdTool() {
             readOnly
             value={markdown}
             rows={14}
-            className="w-full p-4 font-mono text-sm border rounded-lg bg-gray-50 text-gray-800 focus:outline-none"
+            className="w-full p-4 font-mono text-sm border border-gray-200 rounded-2xl bg-gray-50 text-gray-800 focus:outline-none"
           />
         </div>
       )}

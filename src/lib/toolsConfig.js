@@ -67,7 +67,7 @@ export const tools = [
     bg: 'bg-indigo-50',
   },
   {
-    id: 'add-watermark',
+    id: 'watermark-pdf',
     name: 'Add Watermark',
     description: 'Stamp custom text watermarks onto PDF pages with configurable opacity, size, and angles.',
     icon: Stamp,

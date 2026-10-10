@@ -5,7 +5,7 @@ export const metadata = {
   description:
     'PDF Lab processes all files 100% in your browser — nothing is uploaded. Read our privacy policy for full details on our zero-data-collection architecture.',
   alternates: {
-    canonical: `${siteUrl}/privacy-policy`,
+    canonical: `${siteUrl || 'https://onlinepdflab.app'}/privacy-policy`,
   },
 };
 
@@ -19,7 +19,9 @@ export default function PrivacyPolicyPage() {
 
       <div className="space-y-8 text-gray-700 leading-relaxed text-base">
         <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-3">1. Complete Client-Side Processing Architecture</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">
+            1. Complete Client-Side Processing Architecture
+          </h2>
           <p>
             At PDF Lab, privacy is our foundational architecture rather than an optional setting. Unlike standard online PDF services, all operations—including merging, splitting, compressing, rotating, signing, watermarking, and password encryption—execute <strong>entirely inside your local web browser</strong> using WebAssembly and client-side JavaScript.
           </p>
@@ -55,7 +57,12 @@ export default function PrivacyPolicyPage() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-3">5. Contact Information</h2>
           <p>
-            For any inquiries, feedback, or legal questions regarding our technical privacy guarantees, please reach out to our team at <code>sevastianbeta@gmail.com</code>.
+            For any inquiries, feedback, or legal questions regarding our technical privacy guarantees, please reach out to our team at{' '}
+            <code
+              dangerouslySetInnerHTML={{
+                __html: '<!--email_off-->sevastianbeta@gmail.com<!--/email_off-->',
+              }}
+            />.
           </p>
         </section>
       </div>

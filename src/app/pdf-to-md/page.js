@@ -4,15 +4,16 @@ import { siteUrl } from '../../lib/siteConfig';
 export const metadata = {
   title: 'Convert PDF to Markdown Online Free – In-Browser PDF to MD',
   description:
-    'Convert PDF documents to clean Markdown (.md) formatted text locally in your browser. Perfect for Obsidian, Notion, and AI. 100% private, no uploads.',
+    'Convert PDF documents to clean Markdown (.md) formatted text locally in your browser. Perfect for Obsidian, Notion, and AI prompts. 100% private, no uploads.',
   alternates: {
-    canonical: `${siteUrl}/pdf-to-md`,
+    canonical: `${siteUrl || 'https://onlinepdflab.app'}/pdf-to-md`,
   },
   openGraph: {
-    title: 'Convert PDF to Markdown Online Free',
-    description: 'Extract Markdown from PDF securely in your browser.',
-    url: `${siteUrl}/pdf-to-md`,
-  }
+    title: 'Convert PDF to Markdown Online Free – In-Browser PDF to MD',
+    description: 'Extract Markdown from PDF securely in your browser with zero file uploads.',
+    url: `${siteUrl || 'https://onlinepdflab.app'}/pdf-to-md`,
+    type: 'website',
+  },
 };
 
 const faqs = [
@@ -28,6 +29,10 @@ const faqs = [
     q: 'Are my private documents safe?',
     a: 'Completely safe. All operations run directly inside your device memory (RAM), meaning your PDF files never leave your computer.',
   },
+  {
+    q: 'What should I do if my PDF is a scanned document?',
+    a: 'This tool extracts embedded digital text. If your PDF is an image scan, use our OCR PDF tool first to recognize the text before converting it to Markdown.',
+  },
 ];
 
 export default function Page() {
@@ -42,7 +47,7 @@ export default function Page() {
       price: '0',
       priceCurrency: 'USD',
     },
-    url: `${siteUrl}/pdf-to-md`,
+    url: `${siteUrl || 'https://onlinepdflab.app'}/pdf-to-md`,
     description: 'Free client-side tool to extract Markdown text from PDF files privately.',
   };
 
@@ -60,7 +65,7 @@ export default function Page() {
   };
 
   return (
-    <>
+    <main className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -69,21 +74,21 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      
+
       <PdfToMdTool />
 
       {/* FAQs Rendered as HTML for SEO */}
-      <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100 mt-12 mb-8">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h2>
-        <div className="space-y-6">
+      <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-200 mt-12 mb-8">
+        <h2 className="text-2xl font-bold mb-6 text-gray-900 text-center">Frequently Asked Questions</h2>
+        <div className="space-y-4">
           {faqs.map((f, idx) => (
-            <div key={idx} className="bg-white p-5 rounded-lg shadow-sm border border-gray-50">
-              <h3 className="font-semibold text-lg text-gray-800">{f.q}</h3>
-              <p className="text-gray-600 mt-2 leading-relaxed">{f.a}</p>
+            <div key={idx} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+              <h3 className="font-bold text-lg text-gray-800 mb-2">{f.q}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{f.a}</p>
             </div>
           ))}
         </div>
       </section>
-    </>
+    </main>
   );
 }
