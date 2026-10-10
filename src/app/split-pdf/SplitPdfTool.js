@@ -4,18 +4,13 @@ import { useState } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import {
   SplitSquareVertical,
-  ShieldCheck,
-  Zap,
-  Sparkles,
-  Smartphone,
   AlertCircle,
   CheckCircle2,
 } from 'lucide-react';
-import Link from 'next/link';
 import Dropzone from '../../components/Dropzone';
 import { tools } from '../../lib/toolsConfig';
 
-export default function SplitPdfTool({ faqs }) {
+export default function SplitPdfTool() {
   const [file, setFile] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [isSplitting, setIsSplitting] = useState(false);
@@ -23,7 +18,7 @@ export default function SplitPdfTool({ faqs }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const toolInfo = tools.find((t) => t.id === 'split-pdf');
+  const toolInfo = tools?.find((t) => t.id === 'split-pdf');
 
   const formatSize = (bytes) => {
     if (!bytes || bytes === 0) return '0 Bytes';
@@ -107,14 +102,13 @@ export default function SplitPdfTool({ faqs }) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
-      {/* Rich H1 for SEO */}
+    <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6">
       <div className="text-center mb-10">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
           Split PDF Online – Extract Pages Privately
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          {toolInfo?.description || 'Separate pages or extract a specific range into a new PDF document.'}
+          {toolInfo?.description || 'Separate pages or extract a specific page range into a new PDF document in seconds.'}
         </p>
       </div>
 
@@ -125,7 +119,6 @@ export default function SplitPdfTool({ faqs }) {
         </div>
       )}
 
-      {/* Tool Work Area */}
       {!file ? (
         <Dropzone onDrop={handleDrop} multiple={false} text="Drag & drop a single PDF to split" />
       ) : (
@@ -141,6 +134,7 @@ export default function SplitPdfTool({ faqs }) {
               </div>
             </div>
             <button
+              type="button"
               onClick={() => {
                 setFile(null);
                 setPageCount(0);
@@ -158,7 +152,7 @@ export default function SplitPdfTool({ faqs }) {
             <label className="block text-sm font-bold text-gray-700 mb-2">
               Page Range to Extract:
             </label>
-            <div className="flex items-center space-x-3">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
               <input
                 type="text"
                 value={splitRange}
@@ -166,7 +160,7 @@ export default function SplitPdfTool({ faqs }) {
                   setSplitRange(e.target.value);
                   setIsSuccess(false);
                 }}
-                className="w-full max-w-xs border border-gray-300 rounded-xl p-3 text-gray-800 focus:outline-orange-500 font-medium"
+                className="w-full sm:max-w-xs border border-gray-300 rounded-xl p-3 text-gray-800 focus:outline-orange-500 font-medium"
                 placeholder="e.g. 1-2"
               />
               <span className="text-xs text-gray-400">Available: 1 to {pageCount}</span>
@@ -183,6 +177,7 @@ export default function SplitPdfTool({ faqs }) {
           )}
 
           <button
+            type="button"
             onClick={splitPdf}
             disabled={isSplitting}
             className={`w-full py-4 rounded-2xl font-bold text-white text-lg transition-all ${
@@ -193,127 +188,6 @@ export default function SplitPdfTool({ faqs }) {
           </button>
         </div>
       )}
-
-      {/* SEO & Rich Content Area */}
-      <div className="mt-20 border-t border-gray-200 pt-16">
-        {/* Step-by-Step Guide */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-3">How to Split a PDF Online</h2>
-          <p className="text-gray-600">Extract pages or custom sections from your PDF in 3 quick steps.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="w-10 h-10 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center font-bold mx-auto mb-4">1</div>
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Upload Document</h3>
-            <p className="text-sm text-gray-500">Drop your PDF file into the upload zone above to scan its page count.</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="w-10 h-10 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center font-bold mx-auto mb-4">2</div>
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Define Range</h3>
-            <p className="text-sm text-gray-500">Specify the page range (such as &quot;1-3&quot; or single page &quot;2-2&quot;) you want to extract.</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="w-10 h-10 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center font-bold mx-auto mb-4">3</div>
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Download Split PDF</h3>
-            <p className="text-sm text-gray-500">Your extracted pages are compiled instantly in browser memory and downloaded.</p>
-          </div>
-        </div>
-
-        {/* Why Choose Us */}
-        <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why Split PDFs with PDF Lab?</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="flex items-start space-x-3">
-              <ShieldCheck className="w-6 h-6 text-green-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Complete Document Privacy</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Your files remain 100% on your device. We never transmit, store, or view your sensitive paperwork.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <Zap className="w-6 h-6 text-yellow-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Lightning-Fast Extraction</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Because nothing is uploaded across the web, documents are split and exported in mere milliseconds.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <Sparkles className="w-6 h-6 text-blue-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Zero Watermarks or Limits</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Extract as many pages as you require without watermark stamps, subscriptions, or hidden charges.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <Smartphone className="w-6 h-6 text-purple-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Every Device Supported</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Use on iPhone, iPad, Android smartphones, Mac, Windows, or Linux browsers without installing software.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Common Uses Section */}
-        <div className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Common Scenarios for Splitting PDFs</h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
-            <li className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <strong>Extracting Specific Chapters:</strong> Separate chapters or sections from large e-books or research papers.
-            </li>
-            <li className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <strong>Sharing Partial Statements:</strong> Send only specific invoice pages or banking sheets without exposing all records.
-            </li>
-            <li className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <strong>Isolating Signed Signature Pages:</strong> Extract execution or endorsement pages from multi-page agreements.
-            </li>
-            <li className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <strong>Removing Unnecessary Pages:</strong> Eliminate blank sheets or duplicate pages to streamline document size.
-            </li>
-          </ul>
-        </div>
-
-        {/* FAQs */}
-        <div className="max-w-3xl mx-auto mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-2xl border border-gray-100">
-                <h3 className="font-bold text-gray-800 mb-2">{faq.q}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Related Tools Internal Linking */}
-        <div className="border-t border-gray-200 pt-10 text-center">
-          <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Related PDF Tools</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/merge-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-orange-600 hover:border-orange-300 transition-colors">
-              Merge PDF
-            </Link>
-            <Link href="/compress-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-orange-600 hover:border-orange-300 transition-colors">
-              Compress PDF
-            </Link>
-            <Link href="/rotate-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-orange-600 hover:border-orange-300 transition-colors">
-              Rotate PDF
-            </Link>
-            <Link href="/pdf-to-jpg" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-orange-600 hover:border-orange-300 transition-colors">
-              PDF to JPG
-            </Link>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

@@ -4,15 +4,10 @@ import { useState } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import {
   FileText,
-  ShieldCheck,
-  Zap,
-  Sparkles,
-  Smartphone,
   AlertCircle,
   CheckCircle2,
 } from 'lucide-react';
 import Dropzone from '../../components/Dropzone';
-import ToolSeoContent from '../../components/ToolSeoContent';
 import { tools } from '../../lib/toolsConfig';
 import { formatSize, downloadBlob } from '../../lib/format';
 import { addPageNumbers, buildLabel, NUMBER_FORMATS } from '../../lib/pageNumbers';
@@ -40,15 +35,10 @@ const MARGIN_OPTIONS = [
 
 const FONT_SIZES = [8, 9, 10, 11, 12, 14, 16, 18, 20, 24];
 
-const theme = {
-  badge: 'bg-sky-100 text-sky-700',
-  linkHover: 'hover:text-sky-600 hover:border-sky-300',
-};
-
 const fieldClass =
   'w-full rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-400';
 
-export default function PageNumbersTool({ faqs }) {
+export default function PageNumbersTool() {
   const [file, setFile] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [position, setPosition] = useState('bottom-center');
@@ -62,7 +52,7 @@ export default function PageNumbersTool({ faqs }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const toolInfo = tools.find((t) => t.id === 'add-page-numbers');
+  const toolInfo = tools?.find((t) => t.id === 'add-page-numbers');
 
   const startPage = Math.min(Math.max(parseInt(startPageInput, 10) || 1, 1), Math.max(pageCount, 1));
   const parsedFirst = parseInt(firstNumberInput, 10);
@@ -128,76 +118,14 @@ export default function PageNumbersTool({ faqs }) {
     }
   };
 
-  const seo = {
-    howTo: {
-      title: 'How to Add Page Numbers to a PDF Online',
-      subtitle: 'Number every page of your document in three quick steps.',
-      steps: [
-        { title: 'Upload Your PDF', text: 'Drag and drop the document you want to number into the drop zone.' },
-        {
-          title: 'Choose the Style',
-          text: 'Pick a position on the page, a number format, the first number and the page to start on.',
-        },
-        {
-          title: 'Download Instantly',
-          text: 'Click the button and your numbered PDF is created and downloaded in seconds.',
-        },
-      ],
-    },
-    why: {
-      title: 'Why Add Page Numbers with PDF Lab?',
-      items: [
-        {
-          icon: Sparkles,
-          iconClass: 'text-sky-500',
-          title: 'Full Control Over Numbering',
-          text: 'Six positions, five formats, custom start page and first number, plus font size, margin and colour.',
-        },
-        {
-          icon: Smartphone,
-          iconClass: 'text-purple-500',
-          title: 'Works on Rotated Pages',
-          text: 'Pages that are landscape or rotated still get upright, correctly placed numbers.',
-        },
-        {
-          icon: ShieldCheck,
-          iconClass: 'text-green-500',
-          title: 'Your File Stays Private',
-          text: 'Everything happens inside your browser. Your document is never uploaded to any server.',
-        },
-        {
-          icon: Zap,
-          iconClass: 'text-yellow-500',
-          title: 'Original Content Untouched',
-          text: 'Text, images and layout stay exactly as they were. The numbers are simply added on top.',
-        },
-      ],
-    },
-    uses: {
-      title: 'When Do You Need to Number PDF Pages?',
-      items: [
-        { title: 'Reports and Theses', text: 'Skip the cover page and begin numbering from the introduction.' },
-        { title: 'Contracts and Legal Bundles', text: 'Make long documents easy to reference with "Page 3 of 40" style numbering.' },
-        { title: 'Scanned Documents', text: 'Add numbers to scanned pages so they can be cited and printed in order.' },
-        { title: 'Handouts and Manuals', text: 'Give printed course material and guides clear, consistent page numbers.' },
-      ],
-    },
-    related: [
-      { href: '/merge-pdf', label: 'Merge PDF' },
-      { href: '/organize-pdf', label: 'Organize Pages' },
-      { href: '/watermark-pdf', label: 'Add Watermark' },
-      { href: '/split-pdf', label: 'Split PDF' },
-    ],
-  };
-
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
+    <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6">
       <div className="text-center mb-10">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
           Add Page Numbers to PDF Online – Free & Private
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          {toolInfo?.description || 'Add page numbers to your PDF in your browser.'}
+          {toolInfo?.description || 'Insert page numbers in header or footer positions with custom formatting.'}
         </p>
       </div>
 
@@ -408,8 +336,6 @@ export default function PageNumbersTool({ faqs }) {
           </button>
         </div>
       )}
-
-      <ToolSeoContent theme={theme} howTo={seo.howTo} why={seo.why} uses={seo.uses} faqs={faqs} related={seo.related} />
     </div>
   );
 }

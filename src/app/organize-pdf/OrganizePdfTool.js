@@ -10,15 +10,10 @@ import {
   ArrowUpDown,
   Undo2,
   FileText,
-  ShieldCheck,
-  Zap,
-  Sparkles,
-  Smartphone,
   AlertCircle,
   CheckCircle2,
 } from 'lucide-react';
 import Dropzone from '../../components/Dropzone';
-import ToolSeoContent from '../../components/ToolSeoContent';
 import { tools } from '../../lib/toolsConfig';
 import { formatSize, downloadBlob } from '../../lib/format';
 import { loadPdfJs } from '../../lib/loadPdfJs';
@@ -27,11 +22,6 @@ import { useDragReorder, moveItem } from '../../lib/useDragReorder';
 
 const THUMB_MAX = 220;
 const THUMB_BOX = 132;
-
-const theme = {
-  badge: 'bg-amber-100 text-amber-700',
-  linkHover: 'hover:text-amber-700 hover:border-amber-300',
-};
 
 function thumbStyle(thumb, rotation) {
   const rotated = rotation % 180 !== 0;
@@ -48,7 +38,7 @@ function thumbStyle(thumb, rotation) {
 const iconBtn =
   'p-1 rounded-md border border-gray-200 bg-white hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-white transition-colors';
 
-export default function OrganizePdfTool({ faqs }) {
+export default function OrganizePdfTool() {
   const [file, setFile] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [items, setItems] = useState([]);
@@ -61,7 +51,7 @@ export default function OrganizePdfTool({ faqs }) {
   const runIdRef = useRef(0);
   const pdfRef = useRef(null);
 
-  const toolInfo = tools.find((t) => t.id === 'organize-pdf');
+  const toolInfo = tools?.find((t) => t.id === 'organize-pdf');
 
   const { getItemProps, overIndex, draggingIndex } = useDragReorder((from, to) => {
     setItems((prev) => moveItem(prev, from, to));
@@ -209,74 +199,14 @@ export default function OrganizePdfTool({ faqs }) {
 
   const removedCount = pageCount - items.length;
 
-  const seo = {
-    howTo: {
-      title: 'How to Reorder, Rotate and Delete PDF Pages',
-      subtitle: 'Rearrange your document visually in three steps.',
-      steps: [
-        { title: 'Upload Your PDF', text: 'Drop your document in and see a thumbnail of every page.' },
-        {
-          title: 'Rearrange the Pages',
-          text: 'Drag pages into a new order, use the arrows on a phone, rotate pages, or delete the ones you do not need.',
-        },
-        { title: 'Save the New PDF', text: 'Click Save and download your reorganised PDF instantly.' },
-      ],
-    },
-    why: {
-      title: 'Why Organize PDFs with PDF Lab?',
-      items: [
-        {
-          icon: Sparkles,
-          iconClass: 'text-amber-500',
-          title: 'See Every Page',
-          text: 'Visual thumbnails make it easy to spot the page you want to move, rotate or remove.',
-        },
-        {
-          icon: Smartphone,
-          iconClass: 'text-purple-500',
-          title: 'Works on Phones and Tablets',
-          text: 'Drag and drop on a computer, or tap the arrow buttons on a touch screen.',
-        },
-        {
-          icon: Zap,
-          iconClass: 'text-yellow-500',
-          title: 'Pages Are Not Re-rendered',
-          text: 'Pages are copied as they are, so text stays sharp and file quality is untouched.',
-        },
-        {
-          icon: ShieldCheck,
-          iconClass: 'text-green-500',
-          title: 'Private by Design',
-          text: 'Everything runs in your browser. Your PDF is never uploaded to a server.',
-        },
-      ],
-    },
-    uses: {
-      title: 'When Do You Need to Organize PDF Pages?',
-      items: [
-        { title: 'Fixing Scan Order', text: 'Put pages back in the right sequence after a scanner or feeder shuffles them.' },
-        { title: 'Removing Extra Pages', text: 'Drop blank, duplicate or confidential pages before sharing a file.' },
-        { title: 'Straightening Pages', text: 'Rotate individual sideways or upside-down pages without touching the rest.' },
-        { title: 'Restructuring Reports', text: 'Move sections around in a report, proposal or presentation exported to PDF.' },
-      ],
-    },
-    related: [
-      { href: '/merge-pdf', label: 'Merge PDF' },
-      { href: '/split-pdf', label: 'Split PDF' },
-      { href: '/remove-pages', label: 'Remove Pages' },
-      { href: '/rotate-pdf', label: 'Rotate PDF' },
-      { href: '/add-page-numbers', label: 'Add Page Numbers' },
-    ],
-  };
-
   return (
-    <div className="max-w-5xl mx-auto py-12 px-4 sm:px-6">
+    <div className="max-w-5xl mx-auto py-8 px-4 sm:px-6">
       <div className="text-center mb-10">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-          Organize PDF Pages – Reorder, Rotate & Delete
+          Organize PDF Pages – Reorder, Rotate & Delete Online
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          {toolInfo?.description || 'Rearrange, rotate and delete PDF pages with a visual page view.'}
+          {toolInfo?.description || 'Visually rearrange, rotate, and delete PDF pages directly in your browser.'}
         </p>
       </div>
 
@@ -453,8 +383,6 @@ export default function OrganizePdfTool({ faqs }) {
           )}
         </div>
       )}
-
-      <ToolSeoContent theme={theme} howTo={seo.howTo} why={seo.why} uses={seo.uses} faqs={faqs} related={seo.related} />
     </div>
   );
 }

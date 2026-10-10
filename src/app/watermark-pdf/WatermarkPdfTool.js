@@ -4,19 +4,13 @@ import { useState } from 'react';
 import { PDFDocument, rgb, degrees, StandardFonts } from 'pdf-lib';
 import {
   Stamp,
-  FileText,
-  ShieldCheck,
-  Zap,
-  Sparkles,
-  Smartphone,
   AlertCircle,
   CheckCircle2,
 } from 'lucide-react';
-import Link from 'next/link';
 import Dropzone from '../../components/Dropzone';
 import { tools } from '../../lib/toolsConfig';
 
-export default function WatermarkPdfTool({ faqs }) {
+export default function WatermarkPdfTool() {
   const [file, setFile] = useState(null);
   const [watermarkText, setWatermarkText] = useState('CONFIDENTIAL');
   const [opacity, setOpacity] = useState(0.3);
@@ -25,7 +19,7 @@ export default function WatermarkPdfTool({ faqs }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const toolInfo = tools.find((t) => t.id === 'watermark-pdf');
+  const toolInfo = tools?.find((t) => t.id === 'watermark-pdf');
 
   const formatSize = (bytes) => {
     if (!bytes || bytes === 0) return '0 Bytes';
@@ -104,14 +98,13 @@ export default function WatermarkPdfTool({ faqs }) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
-      {/* Rich H1 for SEO */}
+    <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6">
       <div className="text-center mb-10">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
           Add Watermark to PDF Online – Free & Secure
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          {toolInfo?.description || 'Stamp custom text or confidential marks across your PDF pages.'}
+          {toolInfo?.description || 'Stamp custom text or confidential marks across your PDF pages directly in your browser.'}
         </p>
       </div>
 
@@ -122,7 +115,6 @@ export default function WatermarkPdfTool({ faqs }) {
         </div>
       )}
 
-      {/* Tool Work Area */}
       {!file ? (
         <Dropzone onDrop={handleDrop} multiple={false} text="Drag & drop a PDF to add watermark" />
       ) : (
@@ -136,6 +128,7 @@ export default function WatermarkPdfTool({ faqs }) {
               </div>
             </div>
             <button
+              type="button"
               onClick={() => {
                 setFile(null);
                 setIsSuccess(false);
@@ -191,6 +184,7 @@ export default function WatermarkPdfTool({ faqs }) {
           )}
 
           <button
+            type="button"
             onClick={addWatermark}
             disabled={isProcessing || !watermarkText.trim()}
             className={`w-full py-4 rounded-2xl font-bold text-white text-lg transition-all ${
@@ -203,127 +197,6 @@ export default function WatermarkPdfTool({ faqs }) {
           </button>
         </div>
       )}
-
-      {/* SEO & Rich Content Area */}
-      <div className="mt-20 border-t border-gray-200 pt-16">
-        {/* Step-by-Step Guide */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-3">How to Watermark PDF Files Online</h2>
-          <p className="text-gray-600">Stamp confidential marks and copyright text in 3 quick steps.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold mx-auto mb-4">1</div>
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Upload Document</h3>
-            <p className="text-sm text-gray-500">Drag & drop the PDF you wish to protect into the upload box above.</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold mx-auto mb-4">2</div>
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Customize Text</h3>
-            <p className="text-sm text-gray-500">Type your custom watermark and adjust transparency to your preference.</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-bold mx-auto mb-4">3</div>
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Download Result</h3>
-            <p className="text-sm text-gray-500">Your watermarked PDF is created locally in memory and downloaded instantly.</p>
-          </div>
-        </div>
-
-        {/* Why Choose Us */}
-        <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why Add Watermarks with PDF Lab?</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="flex items-start space-x-3">
-              <ShieldCheck className="w-6 h-6 text-green-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Complete Document Privacy</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Files are processed strictly in local browser memory. No data is uploaded or stored on any server.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <Zap className="w-6 h-6 text-yellow-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Instant Processing</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Watermarks are stamped across all pages in seconds without server queue delays.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <Sparkles className="w-6 h-6 text-blue-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Professional Clean Output</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  We never add third-party advertising or our brand logo to your output documents.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <Smartphone className="w-6 h-6 text-purple-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Mobile & Desktop Friendly</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Works on iPhone, Android, Windows, and Mac browsers without requiring software installation.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Common Uses Section */}
-        <div className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Common Scenarios for Watermarking PDFs</h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
-            <li className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <strong>Draft Agreements:</strong> Stamp &quot;DRAFT&quot; on contracts and proposals during negotiations.
-            </li>
-            <li className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <strong>Confidentiality Protection:</strong> Mark sensitive business records or audits as &quot;CONFIDENTIAL&quot;.
-            </li>
-            <li className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <strong>Copyright Protection:</strong> Protect creative portfolios, ebooks, and research with author notices.
-            </li>
-            <li className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <strong>Sample Invoices:</strong> Stamp &quot;SAMPLE&quot; or &quot;PAID&quot; on receipts and billing statements.
-            </li>
-          </ul>
-        </div>
-
-        {/* FAQs */}
-        <div className="max-w-3xl mx-auto mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-2xl border border-gray-100">
-                <h3 className="font-bold text-gray-800 mb-2">{faq.q}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Related Tools Internal Linking */}
-        <div className="border-t border-gray-200 pt-10 text-center">
-          <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Related PDF Tools</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/protect-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-pink-600 hover:border-pink-300 transition-colors">
-              Protect PDF
-            </Link>
-            <Link href="/sign-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-pink-600 hover:border-pink-300 transition-colors">
-              Sign PDF
-            </Link>
-            <Link href="/rotate-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-pink-600 hover:border-pink-300 transition-colors">
-              Rotate PDF
-            </Link>
-            <Link href="/merge-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-pink-600 hover:border-pink-300 transition-colors">
-              Merge PDF
-            </Link>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

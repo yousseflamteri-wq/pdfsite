@@ -3,17 +3,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   FileText,
-  ShieldCheck,
-  Zap,
-  Sparkles,
-  Languages,
   AlertCircle,
-  ScanText,
   X,
 } from 'lucide-react';
+import toast from 'react-hot-toast';
 import Dropzone from '../../components/Dropzone';
 import TextOutput from '../../components/TextOutput';
-import ToolSeoContent from '../../components/ToolSeoContent';
 import { tools } from '../../lib/toolsConfig';
 import { formatSize, baseName } from '../../lib/format';
 import { loadPdfJs } from '../../lib/loadPdfJs';
@@ -46,11 +41,6 @@ const ACCEPT = 'application/pdf,.pdf,image/*,.jpg,.jpeg,.png,.webp,.bmp,.gif';
 const MAX_RENDER_SIDE = 4000;
 const RENDER_SCALE = 3;
 
-const theme = {
-  badge: 'bg-fuchsia-100 text-fuchsia-700',
-  linkHover: 'hover:text-fuchsia-700 hover:border-fuchsia-300',
-};
-
 const fieldClass =
   'w-full rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-fuchsia-200 focus:border-fuchsia-400 disabled:opacity-50';
 
@@ -63,7 +53,7 @@ function safeTerminate(worker) {
   }
 }
 
-export default function OcrTool({ faqs }) {
+export default function OcrTool() {
   const [file, setFile] = useState(null);
   const [kind, setKind] = useState('pdf');
   const [previewUrl, setPreviewUrl] = useState('');
@@ -84,7 +74,7 @@ export default function OcrTool({ faqs }) {
   const pdfRef = useRef(null);
   const previewUrlRef = useRef('');
 
-  const toolInfo = tools.find((t) => t.id === 'ocr-pdf');
+  const toolInfo = tools?.find((t) => t.id === 'ocr-pdf');
 
   const fullText = useMemo(() => joinPages(results, withSeparators), [results, withSeparators]);
   const hasAnyText = results.some((r) => r.text.length > 0);
@@ -140,10 +130,12 @@ export default function OcrTool({ faqs }) {
 
     if (isHeic(selected)) {
       setErrorMessage('HEIC/HEIF photos are not supported by most browsers. Export the photo as JPG first.');
+      toast.error('HEIC files are not supported.');
       return;
     }
     if (!isPdf && !isImage) {
       setErrorMessage('Please choose a PDF or an image file (JPG, PNG, WebP, BMP, GIF).');
+      toast.error('Invalid file type.');
       return;
     }
 
@@ -167,13 +159,13 @@ export default function OcrTool({ faqs }) {
       pdf.destroy();
     } catch (err) {
       console.error(err);
-      setErrorMessage(
-        err && err.name === 'PasswordException'
-          ? 'This PDF is password-protected. Please unlock it first, then try again.'
-          : err?.message?.includes('PDF engine')
-            ? err.message
-            : 'Could not read this PDF. The file may be corrupted.'
-      );
+      const msg = err && err.name === 'PasswordException'
+        ? 'This PDF is password-protected. Please unlock it first, then try again.'
+        : err?.message?.includes('PDF engine')
+          ? err.message
+          : 'Could not read this PDF. The file may be corrupted.';
+      setErrorMessage(msg);
+      toast.error('Could not load the PDF.');
       setFile(null);
     }
   };
@@ -185,6 +177,7 @@ export default function OcrTool({ faqs }) {
     setIsProcessing(false);
     setStatus('');
     setWasCancelled(true);
+    toast('OCR Cancelled', { icon: '🛑' });
   };
 
   const startOcr = async () => {
@@ -195,6 +188,7 @@ export default function OcrTool({ faqs }) {
       const parsed = parsePageRange(rangeInput, pageCount);
       if (parsed.error) {
         setErrorMessage(parsed.error);
+        toast.error('Invalid page range.');
         return;
       }
       pageList = parsed.pages;
@@ -217,7 +211,7 @@ export default function OcrTool({ faqs }) {
       const Tesseract = await loadTesseract();
       if (runIdRef.current !== runId) return;
 
-      setStatus('Preparing language data (the first run downloads a few MB)...');
+      setStatus('Preparing language data (first run downloads a few MB)...');
       const worker = await Tesseract.createWorker(language, 1, {
         logger: (m) => {
           if (runIdRef.current !== runId) return;
@@ -277,14 +271,17 @@ export default function OcrTool({ faqs }) {
         setProgress(done / total);
         setResults([...collected]);
       }
+
+      toast.success('Text recognized successfully!');
     } catch (err) {
       if (runIdRef.current !== runId) return;
       console.error(err);
       setErrorMessage(
         err?.message?.includes('OCR engine')
           ? err.message
-          : 'OCR failed. Check your internet connection (the language data must download once) and try again.'
+          : 'OCR failed. Check your connection (language files download once) and try again.'
       );
+      toast.error('OCR failed. Please try again.');
     } finally {
       if (runIdRef.current === runId) {
         disposeEngines();
@@ -294,73 +291,14 @@ export default function OcrTool({ faqs }) {
     }
   };
 
-  const seo = {
-    howTo: {
-      title: 'How to Convert a Scanned PDF or Image to Text',
-      subtitle: 'Run OCR on scans and photos in three simple steps.',
-      steps: [
-        { title: 'Add a PDF or Image', text: 'Drop a scanned PDF, or a JPG, PNG or WebP photo of a document.' },
-        {
-          title: 'Choose the Language',
-          text: 'Pick the language of the text, or a combination such as Arabic + English. For PDFs you can also limit the pages.',
-        },
-        { title: 'Copy or Download', text: 'Wait while the text is recognised, then copy it or save it as a .txt file.' },
-      ],
-    },
-    why: {
-      title: 'Why Use Our Online OCR?',
-      items: [
-        {
-          icon: ShieldCheck,
-          iconClass: 'text-green-500',
-          title: 'Your Documents Stay on Your Device',
-          text: 'Recognition runs in your browser. Your file is never uploaded to a server.',
-        },
-        {
-          icon: Languages,
-          iconClass: 'text-fuchsia-600',
-          title: 'Arabic, French, English and More',
-          text: 'Over a dozen languages, including mixed-language options for bilingual documents.',
-        },
-        {
-          icon: Zap,
-          iconClass: 'text-yellow-500',
-          title: 'Free, No Signup, No Page Limit',
-          text: 'No account, no watermark and no daily quota. You can choose just the pages you need.',
-        },
-        {
-          icon: Sparkles,
-          iconClass: 'text-blue-500',
-          title: 'Works on PDFs and Photos',
-          text: 'Handles multi-page scanned PDFs as well as single photos of papers, receipts and notes.',
-        },
-      ],
-    },
-    uses: {
-      title: 'What Is OCR Useful For?',
-      items: [
-        { title: 'Scanned Documents', text: 'Make the text in old scans and printed papers copyable and editable.' },
-        { title: 'Photos of Notes and Boards', text: 'Turn a photo of handouts, slides or a whiteboard into text.' },
-        { title: 'Receipts and Invoices', text: 'Pull the wording and figures from a photographed receipt.' },
-        { title: 'Printed Books and Articles', text: 'Capture quotes from printed pages without retyping them.' },
-      ],
-    },
-    related: [
-      { href: '/pdf-to-text', label: 'PDF to Text' },
-      { href: '/image-to-pdf', label: 'Image to PDF' },
-      { href: '/pdf-to-jpg', label: 'PDF to JPG' },
-      { href: '/compress-pdf', label: 'Compress PDF' },
-    ],
-  };
-
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
+    <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6">
       <div className="text-center mb-10">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
           OCR PDF & Image to Text – Free Online OCR
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          {toolInfo?.description || 'Recognise text in scanned PDFs and images, right in your browser.'}
+          {toolInfo?.description || 'Recognise text in scanned PDFs and images directly in your browser. 100% private, supports 15+ languages.'}
         </p>
       </div>
 
@@ -464,7 +402,7 @@ export default function OcrTool({ faqs }) {
                 />
               </div>
               <p className="text-xs text-gray-400 mt-2">
-                OCR runs on your device and usually takes a few seconds per page.
+                OCR runs locally on your device in WebAssembly.
               </p>
             </div>
           ) : (
@@ -501,6 +439,7 @@ export default function OcrTool({ faqs }) {
                 />
                 <span>Add a separator line before each page</span>
               </label>
+
               <TextOutput
                 text={fullText}
                 filename={`${baseName(file.name)}-ocr.txt`}
@@ -510,8 +449,6 @@ export default function OcrTool({ faqs }) {
           )}
         </div>
       )}
-
-      <ToolSeoContent theme={theme} howTo={seo.howTo} why={seo.why} uses={seo.uses} faqs={faqs} related={seo.related} />
     </div>
   );
 }

@@ -7,16 +7,11 @@ import {
   ArrowDown,
   GripVertical,
   AlertCircle,
-  ShieldCheck,
-  Zap,
-  Sparkles,
-  Smartphone,
 } from 'lucide-react';
-import Link from 'next/link';
 import Dropzone from '../../components/Dropzone';
 import { generateSafeId } from '../../lib/generateId';
 
-export default function MergeTool({ faqs }) {
+export default function MergeTool() {
   const [fileList, setFileList] = useState([]);
   const [isMerging, setIsMerging] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -133,8 +128,8 @@ export default function MergeTool({ faqs }) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
-      {/* Rich H1 for SEO */}
+    <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6">
+      {/* Tool Header */}
       <div className="text-center mb-10">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
           Merge PDF Files Online – Free & Private
@@ -231,122 +226,6 @@ export default function MergeTool({ faqs }) {
           </div>
         </div>
       )}
-
-      {/* Extended SEO Content */}
-      <div className="mt-20 border-t border-gray-200 pt-16">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-3">How to Merge PDF Files Online</h2>
-          <p className="text-gray-600">Quickly organize and join your documents in 3 intuitive steps.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold mx-auto mb-4">1</div>
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Upload PDFs</h3>
-            <p className="text-sm text-gray-500">Select or drop two or more PDF files from your desktop or phone.</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold mx-auto mb-4">2</div>
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Reorder Document Pages</h3>
-            <p className="text-sm text-gray-500">Use arrow buttons or drag entries to adjust the document order.</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold mx-auto mb-4">3</div>
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Download Unified PDF</h3>
-            <p className="text-sm text-gray-500">Click &quot;Merge PDFs&quot; to export your merged document immediately.</p>
-          </div>
-        </div>
-
-        <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why Merge PDFs with PDF Lab?</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="flex items-start space-x-3">
-              <ShieldCheck className="w-6 h-6 text-green-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Guaranteed Privacy</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Files are processed completely in local memory. No remote uploads, no storage, no risk of data leaks.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <Zap className="w-6 h-6 text-yellow-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Instant Processing</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Without upload or download waiting times, multi-megabyte documents are joined almost instantly.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <Sparkles className="w-6 h-6 text-blue-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Zero Watermarks</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Keep your work professional. Every combined document is 100% clean and free of watermarks.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <Smartphone className="w-6 h-6 text-purple-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">All Devices Supported</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Compatible with Chrome, Safari, Edge, and Brave across Windows, macOS, Android, and iOS.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Common Use Cases for Merging PDFs</h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
-            <li className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <strong>Job Applications:</strong> Combine your CV, cover letter, and diplomas into a single submission file.
-            </li>
-            <li className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <strong>Invoicing & Accounting:</strong> Consolidate monthly receipts and purchase orders for tax preparation.
-            </li>
-            <li className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <strong>Academic Research:</strong> Merge research chapters, appendices, and reference papers together.
-            </li>
-            <li className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <strong>Legal Documentation:</strong> Assemble contracts, addendums, and identity documents in strict order.
-            </li>
-          </ul>
-        </div>
-
-        <div className="max-w-3xl mx-auto mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-2xl border border-gray-100">
-                <h3 className="font-bold text-gray-800 mb-2">{faq.q}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="border-t border-gray-200 pt-10 text-center">
-          <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Related PDF Tools</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/split-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-blue-600 hover:border-blue-300 transition-colors">
-              Split PDF
-            </Link>
-            <Link href="/compress-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-blue-600 hover:border-blue-300 transition-colors">
-              Compress PDF
-            </Link>
-            <Link href="/rotate-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-blue-600 hover:border-blue-300 transition-colors">
-              Rotate PDF
-            </Link>
-            <Link href="/protect-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-blue-600 hover:border-blue-300 transition-colors">
-              Protect PDF
-            </Link>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

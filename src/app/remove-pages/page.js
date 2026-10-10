@@ -1,99 +1,170 @@
 import RemovePagesTool from './RemovePagesTool';
+import ArticleSeo from '@/components/ArticleSeo';
 import { siteUrl } from '../../lib/siteConfig';
 
 export const metadata = {
-  title: 'Remove PDF Pages Free – Delete Blank or Unwanted Pages',
+  title: 'Delete PDF Pages Free Online – Remove Pages from PDF',
   description:
-    'Delete unwanted or blank pages from any PDF in seconds. No upload, no signup — free in-browser page removal. Enter page numbers or ranges to remove.',
+    'Delete unwanted or blank pages from any PDF online for free. Enter page numbers or ranges to remove pages in seconds. 100% private, no signup, in-browser tool.',
   alternates: {
-    canonical: `${siteUrl}/remove-pages`,
+    canonical: `${siteUrl || 'https://onlinepdflab.app'}/remove-pages`,
   },
   openGraph: {
-    title: 'Remove PDF Pages Free – Delete Pages Without Upload',
-    description: 'Delete selected pages from PDF documents locally in your browser. Fast & private.',
-    url: `${siteUrl}/remove-pages`,
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Remove PDF Pages Free – No Upload Required',
-    description: 'Delete unwanted or blank PDF pages in your browser. Free and private.',
+    title: 'Delete PDF Pages Free Online – Remove Pages from PDF',
+    description:
+      'Remove unwanted pages from PDF files directly in your browser. 100% private with no file upload required.',
+    url: `${siteUrl || 'https://onlinepdflab.app'}/remove-pages`,
+    type: 'website',
   },
 };
 
-const faqs = [
-  {
-    q: 'How does client-side PDF page removal work?',
-    a: 'Our tool analyzes your document structure directly in browser memory. It creates a clean PDF containing only the pages you choose to keep, completely discarding the selected pages without transmitting any data over the internet.',
-  },
-  {
-    q: 'How do I specify which pages to delete?',
-    a: 'You can enter individual page numbers separated by commas (e.g., "1, 3, 7") or specify ranges with hyphens (e.g., "4-6").',
-  },
-  {
-    q: 'Does deleting pages affect the quality of the remaining document?',
-    a: 'No. The remaining pages retain their original vector typography, embedded images, and layouts losslessly.',
-  },
-  {
-    q: 'Are my confidential documents safe?',
-    a: 'Yes, 100%. All processing occurs strictly within your browser sandbox. No file is ever sent to external cloud storage or servers.',
-  },
-  {
-    q: 'Can I remove pages from a password-protected PDF?',
-    a: 'If a document has an active open password, unlock it before removing pages so the internal page structure can be read.',
-  },
-  {
-    q: 'Can I delete pages on mobile devices?',
-    a: 'Yes, the tool is fully responsive and functions directly on mobile browsers across iOS and Android.',
-  },
-];
-
 export default function Page() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'Remove PDF Pages',
-    applicationCategory: 'UtilitiesApplication',
-    operatingSystem: 'Any',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
-    url: `${siteUrl}/remove-pages`,
-    featureList: [
-      'Delete specific pages by number or range',
-      'Remove blank or unwanted pages',
-      'Lossless output — remaining pages unaffected',
-      'Client-side only — no file upload',
-      'No signup, no watermarks',
-    ],
-    description: 'Free client-side tool to delete selected pages from PDF files securely in browser memory.',
-  };
+  const articleData = {
+    title: 'How to Delete Pages from a PDF Online for Free',
+    intro:
+      'Need to remove duplicate sheets, blank pages, or sensitive sections from your PDF document? Our free online PDF page remover tool lets you delete specific pages or entire page ranges in seconds. Everything runs 100% inside your web browser, ensuring your private files are never uploaded to any server.',
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: f.a,
+    sections: [
+      {
+        heading: 'How to Delete a Page in a PDF in 4 Simple Steps',
+        content:
+          'Removing pages from your document is quick and requires no registration or software installation:',
+        list: [
+          {
+            title: 'Step 1: Upload or drag your PDF.',
+            text: 'Drop your PDF document into the upload zone above or select it from your device.',
+          },
+          {
+            title: 'Step 2: Specify the pages to delete.',
+            text: 'Enter single page numbers separated by commas (e.g. 1, 4) or page ranges with hyphens (e.g. 5-8).',
+          },
+          {
+            title: 'Step 3: Click Remove Selected Pages.',
+            text: 'Our in-browser engine rebuilds your document, keeping only your desired pages losslessly.',
+          },
+          {
+            title: 'Step 4: Download your cleaned PDF.',
+            text: 'Your updated document is compiled in memory and saved to your computer or phone immediately.',
+          },
+        ],
       },
-    })),
+      {
+        heading: 'Why Remove PDF Pages with PDF Lab?',
+        content:
+          'While Adobe Acrobat requires uploading your files and signing in with an account, PDF Lab offers an instant, zero-upload workflow:',
+        list: [
+          {
+            title: 'Complete Document Privacy:',
+            text: 'Files are processed locally in your browser memory. Your contracts, bank statements, and private records never leave your device.',
+          },
+          {
+            title: 'No Sign-In or Subscription Required:',
+            text: 'Delete pages freely without paywalls, watermark stamps, or mandatory email registration.',
+          },
+          {
+            title: 'Preserves Original Quality:',
+            text: 'Retains original vector typography, image resolutions, bookmarks, and page dimensions losslessly.',
+          },
+          {
+            title: 'Works on All Devices:',
+            text: 'Fully responsive across Chrome, Safari, Edge, and mobile browsers on iOS and Android.',
+          },
+        ],
+      },
+      {
+        heading: 'Common Reasons to Delete Pages from a PDF',
+        content:
+          'Trimming unneeded pages makes documents cleaner, easier to share, and more professional:',
+        list: [
+          {
+            title: 'Eliminate Accidental Blank Pages:',
+            text: 'Remove empty trailing pages generated during printer scans or document exports.',
+          },
+          {
+            title: 'Remove Sensitive or Confidential Data:',
+            text: 'Delete appendix pages containing internal notes, personal signatures, or proprietary figures before sharing.',
+          },
+          {
+            title: 'Reduce File Size for Email:',
+            text: 'Removing heavy image pages or unused slides directly shrinks the overall PDF file weight.',
+          },
+          {
+            title: 'Tailor Portfolios & Resumes:',
+            text: 'Extract only the relevant project pages or certifications required for a specific job application.',
+          },
+        ],
+      },
+      {
+        heading: 'Does Deleting Pages Reduce the PDF File Size?',
+        content:
+          'Yes! Removing pages will directly reduce the overall file size of your PDF, especially if the deleted pages contain high-resolution images, full-page scans, or complex vector graphics. If your goal is to fit your document into an email attachment, removing extraneous pages is often faster than recompressing.'
+      },
+    ],
+
+    faqs: [
+      {
+        question: 'How do I remove blank pages from a PDF?',
+        answer:
+          'Drop your PDF into the tool above, check which page numbers are blank, type them into the input box (e.g., 2, 5), and click "Remove Selected Pages". The tool will generate a new PDF with those blank pages removed.',
+      },
+      {
+        question: 'Can I undo changes after deleting pages?',
+        answer:
+          'Yes. Our tool creates a brand new downloadable PDF file and never alters or overwrites the original file on your computer. Your original document remains completely intact.',
+      },
+      {
+        question: 'Does deleting pages reduce the quality of the remaining pages?',
+        answer:
+          'No. The remaining pages are transferred losslessly without recompression, preserving all vector lines, crisp text, and full image quality.',
+      },
+      {
+        question: 'Is it safe to delete pages from confidential PDFs here?',
+        answer:
+          'Yes, 100%. All processing runs locally inside your browser memory using client-side JavaScript. Your documents are never uploaded to any cloud server or database.',
+      },
+      {
+        question: 'Can I remove pages from a password-protected PDF?',
+        answer:
+          'If the PDF has an active open password, it must first be unlocked before pages can be deleted so that the document structure can be read.',
+      },
+      {
+        question: 'Can I delete PDF pages on my phone (iPhone or Android)?',
+        answer:
+          'Yes. PDF Lab is fully mobile-compatible and runs seamlessly in Safari, Chrome, and other mobile browsers without installing any apps.',
+      },
+      {
+        question: 'Is this PDF page remover tool completely free?',
+        answer:
+          'Yes, 100% free with no hidden fees, no watermark additions, and no sign-up required.',
+      },
+    ],
+
+    relatedTools: [
+      { label: 'Split PDF', href: '/split-pdf' },
+      { label: 'Merge PDF', href: '/merge-pdf' },
+      { label: 'Rotate PDF', href: '/rotate-pdf' },
+      { label: 'Compress PDF', href: '/compress-pdf' },
+      { label: 'Protect PDF', href: '/protect-pdf' },
+    ],
   };
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <RemovePagesTool faqs={faqs} />
-    </>
+    <main className="min-h-screen bg-slate-50">
+      <div className="pt-24 pb-16">
+        {/* 1. الأداة التفاعلية الفوق */}
+        <div className="max-w-5xl mx-auto px-4 mb-16">
+          <RemovePagesTool />
+        </div>
+
+        {/* 2. مقال السيو والأسئلة الشائعة + الروابط الداخلية */}
+        <ArticleSeo
+          title={articleData.title}
+          intro={articleData.intro}
+          sections={articleData.sections}
+          faqs={articleData.faqs}
+          relatedTools={articleData.relatedTools}
+        />
+      </div>
+    </main>
   );
 }

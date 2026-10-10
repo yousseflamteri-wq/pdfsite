@@ -5,17 +5,12 @@ import {
   X,
   ArrowLeft,
   ArrowRight,
-  ShieldCheck,
-  Zap,
-  Sparkles,
-  Smartphone,
   AlertCircle,
   CheckCircle2,
   ImagePlus,
   Images,
 } from 'lucide-react';
 import Dropzone from '../../components/Dropzone';
-import ToolSeoContent from '../../components/ToolSeoContent';
 import { tools } from '../../lib/toolsConfig';
 import { generateSafeId } from '../../lib/generateId';
 import { formatSize, downloadBlob } from '../../lib/format';
@@ -24,11 +19,6 @@ import { buildPdfFromImages, MARGINS } from '../../lib/imagesToPdf';
 import { useDragReorder, moveItem } from '../../lib/useDragReorder';
 
 const ACCEPT = 'image/*,.jpg,.jpeg,.png,.webp,.bmp,.gif,.avif';
-
-const theme = {
-  badge: 'bg-lime-100 text-lime-700',
-  linkHover: 'hover:text-lime-700 hover:border-lime-400',
-};
 
 function OptionGroup({ label, value, onChange, options, disabled = false, hint }) {
   return (
@@ -56,7 +46,7 @@ function OptionGroup({ label, value, onChange, options, disabled = false, hint }
   );
 }
 
-export default function ImageToPdfTool({ faqs }) {
+export default function ImageToPdfTool() {
   const [items, setItems] = useState([]);
   const [pageSize, setPageSize] = useState('a4');
   const [orientation, setOrientation] = useState('auto');
@@ -68,7 +58,7 @@ export default function ImageToPdfTool({ faqs }) {
   const fileInputRef = useRef(null);
   const itemsRef = useRef([]);
 
-  const toolInfo = tools.find((t) => t.id === 'image-to-pdf');
+  const toolInfo = tools?.find((t) => t.id === 'image-to-pdf');
 
   const { getItemProps, overIndex, draggingIndex } = useDragReorder((from, to) => {
     setItems((prev) => moveItem(prev, from, to));
@@ -172,90 +162,14 @@ export default function ImageToPdfTool({ faqs }) {
     }
   };
 
-  const seo = {
-    howTo: {
-      title: 'How to Convert Images to PDF Online',
-      subtitle: 'Turn photos, screenshots and scans into one tidy PDF in three steps.',
-      steps: [
-        { title: 'Add Your Images', text: 'Select JPG, PNG, WebP or other images from your device, or drag them in.' },
-        {
-          title: 'Arrange and Set the Layout',
-          text: 'Drag thumbnails into order, then choose A4, Letter or fit-to-image page size, orientation and margins.',
-        },
-        { title: 'Download Your PDF', text: 'Click Convert and the finished PDF downloads straight away.' },
-      ],
-    },
-    why: {
-      title: 'Why Use This Image to PDF Converter?',
-      items: [
-        {
-          icon: Sparkles,
-          iconClass: 'text-lime-600',
-          title: 'Real Page Layout Controls',
-          text: 'Pick A4, US Letter or a page that matches each image, with optional margins and orientation.',
-        },
-        {
-          icon: ShieldCheck,
-          iconClass: 'text-green-500',
-          title: 'Your Photos Stay Private',
-          text: 'Images are processed in your browser. Nothing is uploaded to a server.',
-        },
-        {
-          icon: Smartphone,
-          iconClass: 'text-purple-500',
-          title: 'Phone Photos Come Out Upright',
-          text: 'Camera rotation data is respected, so portrait photos do not end up sideways.',
-        },
-        {
-          icon: Zap,
-          iconClass: 'text-yellow-500',
-          title: 'No Limits, No Watermarks',
-          text: 'Convert as many images as your device can handle, free and without signing up.',
-        },
-      ],
-    },
-    uses: {
-      title: 'What Is Image to PDF Useful For?',
-      items: [
-        { title: 'Scanned Paperwork', text: 'Combine photos of documents, forms and receipts into a single file you can send.' },
-        { title: 'Applications and Submissions', text: 'Many portals only accept PDF. Convert ID photos and certificates in seconds.' },
-        { title: 'Screenshots and Notes', text: 'Bundle screenshots or whiteboard photos into one shareable document.' },
-        { title: 'Printing', text: 'Lay images out on A4 or Letter pages with margins so they print exactly as expected.' },
-      ],
-    },
-    related: [
-      { href: '/jpg-to-pdf', label: 'JPG to PDF' },
-      { href: '/pdf-to-jpg', label: 'PDF to JPG' },
-      { href: '/merge-pdf', label: 'Merge PDF' },
-      { href: '/compress-pdf', label: 'Compress PDF' },
-    ],
-    contextualLinks: [
-      {
-        href: '/jpg-to-pdf',
-        anchor: 'JPG to PDF converter',
-        context: 'Converting JPEG camera photos only? Our dedicated',
-      },
-      {
-        href: '/merge-pdf',
-        anchor: 'Merge PDF',
-        context: 'After creating your PDF, combine it with other documents using',
-      },
-      {
-        href: '/compress-pdf',
-        anchor: 'Compress PDF',
-        context: 'Reduce the file size of your newly created PDF with our',
-      },
-    ],
-  };
-
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
+    <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6">
       <div className="text-center mb-10">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-          Image to PDF Converter – JPG, PNG & WebP to PDF
+          Image to PDF Converter – PNG, WebP & JPG to PDF
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          {toolInfo?.description || 'Combine images into one PDF with custom page size and margins.'}
+          {toolInfo?.description || 'Combine images into one PDF with custom page sizes, margins, and orientation.'}
         </p>
       </div>
 
@@ -422,8 +336,6 @@ export default function ImageToPdfTool({ faqs }) {
           </button>
         </div>
       )}
-
-      <ToolSeoContent theme={theme} howTo={seo.howTo} why={seo.why} uses={seo.uses} faqs={faqs} related={seo.related} contextualLinks={seo.contextualLinks} />
     </div>
   );
 }

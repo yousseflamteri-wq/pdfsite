@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
+  async redirects() {
+    return [
+      {
+        source: '/add-watermark',
+        destination: '/watermark-pdf',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

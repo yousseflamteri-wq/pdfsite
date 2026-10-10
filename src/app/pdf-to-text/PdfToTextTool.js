@@ -4,27 +4,17 @@ import { useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
   FileText,
-  ShieldCheck,
-  Zap,
-  Sparkles,
-  Smartphone,
   AlertCircle,
   AlertTriangle,
 } from 'lucide-react';
 import Dropzone from '../../components/Dropzone';
 import TextOutput from '../../components/TextOutput';
-import ToolSeoContent from '../../components/ToolSeoContent';
 import { tools } from '../../lib/toolsConfig';
 import { formatSize, baseName } from '../../lib/format';
 import { loadPdfJs } from '../../lib/loadPdfJs';
 import { itemsToText, joinPages } from '../../lib/pdfText';
 
-const theme = {
-  badge: 'bg-cyan-100 text-cyan-700',
-  linkHover: 'hover:text-cyan-700 hover:border-cyan-300',
-};
-
-export default function PdfToTextTool({ faqs }) {
+export default function PdfToTextTool() {
   const [file, setFile] = useState(null);
   const [pages, setPages] = useState([]);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -33,7 +23,7 @@ export default function PdfToTextTool({ faqs }) {
   const [errorMessage, setErrorMessage] = useState('');
   const runIdRef = useRef(0);
 
-  const toolInfo = tools.find((t) => t.id === 'pdf-to-text');
+  const toolInfo = tools?.find((t) => t.id === 'pdf-to-text');
 
   const fullText = useMemo(() => joinPages(pages, withSeparators), [pages, withSeparators]);
 
@@ -103,70 +93,15 @@ export default function PdfToTextTool({ faqs }) {
     }
   };
 
-  const seo = {
-    howTo: {
-      title: 'How to Extract Text from a PDF',
-      subtitle: 'Copy or save the text of any PDF in three quick steps.',
-      steps: [
-        { title: 'Upload Your PDF', text: 'Drag and drop a PDF, or tap to pick one from your device.' },
-        { title: 'Text Appears Instantly', text: 'The text of every page is extracted automatically in your browser.' },
-        { title: 'Copy or Download', text: 'Copy it to the clipboard or save it as a .txt file.' },
-      ],
-    },
-    why: {
-      title: 'Why Use Our PDF to Text Converter?',
-      items: [
-        {
-          icon: ShieldCheck,
-          iconClass: 'text-green-500',
-          title: 'Completely Private',
-          text: 'Your PDF is read locally in your browser. It is never uploaded to a server.',
-        },
-        {
-          icon: Zap,
-          iconClass: 'text-yellow-500',
-          title: 'Instant Results',
-          text: 'No waiting in a queue. Text is extracted as soon as you add the file.',
-        },
-        {
-          icon: Sparkles,
-          iconClass: 'text-cyan-600',
-          title: 'Clean, Readable Output',
-          text: 'Lines and paragraphs are rebuilt, and you can add page separators to see where each page starts.',
-        },
-        {
-          icon: Smartphone,
-          iconClass: 'text-purple-500',
-          title: 'Smart Scan Detection',
-          text: 'If your PDF is a scan with no real text, we tell you and point you to the OCR tool.',
-        },
-      ],
-    },
-    uses: {
-      title: 'When Do You Need to Extract Text from a PDF?',
-      items: [
-        { title: 'Quoting and Research', text: 'Copy passages from papers, reports and e-books without retyping.' },
-        { title: 'Translation and Editing', text: 'Move the content into a document or translator that cannot open PDFs.' },
-        { title: 'Search and Analysis', text: 'Turn a document into plain text for word counts, keyword searches or data work.' },
-        { title: 'Accessibility', text: 'Get a plain-text version that works with screen readers and simple text editors.' },
-      ],
-    },
-    related: [
-      { href: '/ocr-pdf', label: 'OCR PDF & Image to Text' },
-      { href: '/pdf-to-jpg', label: 'PDF to JPG' },
-      { href: '/split-pdf', label: 'Split PDF' },
-      { href: '/compress-pdf', label: 'Compress PDF' },
-    ],
-  };
-
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
+    <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6">
+      {/* Tool Header */}
       <div className="text-center mb-10">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
           PDF to Text – Extract Text from PDF Online
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          {toolInfo?.description || 'Extract the text from any PDF and copy it or save it as a .txt file.'}
+          {toolInfo?.description || 'Extract selectable text from any PDF document and copy it or save it as a TXT file.'}
         </p>
       </div>
 
@@ -222,13 +157,13 @@ export default function PdfToTextTool({ faqs }) {
               <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5 text-amber-600" />
               <p className="text-sm">
                 {hasNoText
-                  ? 'No selectable text was found. This PDF is probably a scan or a set of images. '
+                  ? 'No selectable text was found. This PDF is probably a scan or an image. '
                   : 'Very little text was found, so this PDF may be a scan. '}
                 Try our{' '}
-                <Link href="/ocr-pdf" className="font-bold underline">
+                <Link href="/ocr-pdf" className="font-bold underline hover:text-amber-950">
                   OCR tool
                 </Link>{' '}
-                to recognise the text from the page images.
+                to recognise text from scanned page images.
               </p>
             </div>
           )}
@@ -253,8 +188,6 @@ export default function PdfToTextTool({ faqs }) {
           )}
         </div>
       )}
-
-      <ToolSeoContent theme={theme} howTo={seo.howTo} why={seo.why} uses={seo.uses} faqs={faqs} related={seo.related} />
     </div>
   );
 }

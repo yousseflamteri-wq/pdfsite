@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { tools } from '../lib/toolsConfig';
 
-// التصنيفات الجداد اللي طلبتي
 const categories = [
   { id: 'all', label: 'All' },
   { id: 'pdf-to-md', label: 'PDF to MD' },
@@ -14,18 +13,13 @@ const categories = [
   { id: 'security', label: 'PDF Security' },
 ];
 
-// ربط كل أداة بالتصنيف ديالها باش يخدم الفلتر
 const toolCategory = {
   'pdf-to-md': 'pdf-to-md',
   'ocr-pdf': 'ocr',
-  
-  // أدوات التحويل
   'jpg-to-pdf': 'convert',
   'image-to-pdf': 'convert',
   'pdf-to-jpg': 'convert',
   'pdf-to-text': 'convert',
-  
-  // أدوات التعديل (جمعنا فيهم حتى أدوات التنظيم والضغط القديمة باش ما يضيعوش)
   'rotate-pdf': 'edit',
   'add-watermark': 'edit',
   'add-page-numbers': 'edit',
@@ -34,8 +28,6 @@ const toolCategory = {
   'remove-pages': 'edit',
   'organize-pdf': 'edit',
   'compress-pdf': 'edit',
-  
-  // أدوات الحماية
   'sign-pdf': 'security',
   'protect-pdf': 'security',
 };
@@ -50,7 +42,6 @@ export default function ToolsGrid() {
 
   return (
     <section className="mb-20">
-      {/* أزرار التصنيفات (Filters) */}
       <div className="flex flex-wrap justify-center gap-2.5 mb-10">
         {categories.map((cat) => (
           <button
@@ -58,9 +49,9 @@ export default function ToolsGrid() {
             type="button"
             onClick={() => setActive(cat.id)}
             aria-pressed={active === cat.id}
-            className={`px-5 py-2.5 rounded-full text-sm font-semibold border transition-colors ${
+            className={`px-5 py-2.5 rounded-full text-sm font-semibold border transition-all duration-200 ${
               active === cat.id
-                ? 'bg-gray-900 text-white border-gray-900'
+                ? 'bg-gray-900 text-white border-gray-900 shadow-md transform scale-105'
                 : 'bg-white text-gray-700 border-gray-200 hover:border-gray-400 hover:bg-gray-50'
             }`}
           >
@@ -69,7 +60,6 @@ export default function ToolsGrid() {
         ))}
       </div>
 
-      {/* شبكة الأدوات */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {visibleTools.map((tool) => {
           const Icon = tool.icon;
@@ -90,7 +80,7 @@ export default function ToolsGrid() {
                 <h2 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
                   {tool.name}
                 </h2>
-                <p className="text-sm text-gray-500 leading-relaxed">
+                <p className="text-sm text-gray-500 leading-relaxed line-clamp-3">
                   {tool.description}
                 </p>
               </div>

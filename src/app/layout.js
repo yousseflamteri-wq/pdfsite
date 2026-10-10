@@ -2,6 +2,7 @@ import './globals.css';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import { siteUrl, siteName, defaultDescription } from '../lib/siteConfig';
+import { Toaster } from 'react-hot-toast'; // استيراد مكتبة الإشعارات
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -48,12 +49,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
-        {/* Navigation Bar */}
         <Navbar />
 
         <div className="flex-1">{children}</div>
 
-        {/* Footer */}
         <footer className="bg-white border-t border-gray-200 mt-20">
           <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
@@ -106,6 +105,15 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </footer>
+
+        {/* عرض الإشعارات لتحت فـ اليمين */}
+        <Toaster 
+          position="bottom-right" 
+          toastOptions={{
+            duration: 3000,
+            style: { background: '#333', color: '#fff' },
+          }} 
+        />
       </body>
     </html>
   );

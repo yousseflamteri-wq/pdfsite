@@ -4,19 +4,13 @@ import { useState } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import {
   Trash2,
-  FileText,
-  ShieldCheck,
-  Zap,
-  Sparkles,
-  Smartphone,
   AlertCircle,
   CheckCircle2,
 } from 'lucide-react';
-import Link from 'next/link';
 import Dropzone from '../../components/Dropzone';
 import { tools } from '../../lib/toolsConfig';
 
-export default function RemovePagesTool({ faqs }) {
+export default function RemovePagesTool() {
   const [file, setFile] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [pagesInput, setPagesInput] = useState('');
@@ -24,7 +18,7 @@ export default function RemovePagesTool({ faqs }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const toolInfo = tools.find((t) => t.id === 'remove-pages');
+  const toolInfo = tools?.find((t) => t.id === 'remove-pages');
 
   const formatSize = (bytes) => {
     if (!bytes || bytes === 0) return '0 Bytes';
@@ -53,7 +47,6 @@ export default function RemovePagesTool({ faqs }) {
     }
   };
 
-  // تحويل النص (مثال: "1, 3, 5-7") إلى مجموعة أرقام صفحات للحذف
   const parsePagesToRemove = (input, maxPages) => {
     const toRemove = new Set();
     const parts = input.split(',').map((p) => p.trim()).filter(Boolean);
@@ -104,7 +97,6 @@ export default function RemovePagesTool({ faqs }) {
       const srcPdf = await PDFDocument.load(buffer);
       const newPdf = await PDFDocument.create();
 
-      // الصفحات المتبقية (0-indexed)
       const pagesToKeep = [];
       for (let i = 1; i <= pageCount; i++) {
         if (!pagesToDelete.has(i)) {
@@ -137,14 +129,13 @@ export default function RemovePagesTool({ faqs }) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
-      {/* Header */}
+    <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6">
       <div className="text-center mb-10">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-          Remove PDF Pages Online – Free & Private
+          Delete PDF Pages Online – Free & Private
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          {toolInfo?.description || 'Delete specific pages from your PDF document easily and securely.'}
+          {toolInfo?.description || 'Quickly delete unwanted, duplicate, or blank pages from your PDF file in your browser.'}
         </p>
       </div>
 
@@ -155,7 +146,6 @@ export default function RemovePagesTool({ faqs }) {
         </div>
       )}
 
-      {/* Tool Interactive Area */}
       {!file ? (
         <Dropzone onDrop={handleDrop} multiple={false} text="Drag & drop a PDF file to remove pages" />
       ) : (
@@ -171,6 +161,7 @@ export default function RemovePagesTool({ faqs }) {
               </div>
             </div>
             <button
+              type="button"
               onClick={() => {
                 setFile(null);
                 setPageCount(0);
@@ -188,7 +179,7 @@ export default function RemovePagesTool({ faqs }) {
             <label className="block text-sm font-bold text-gray-700 mb-2">
               Pages to Delete (e.g. 1, 3, 5-7):
             </label>
-            <div className="flex items-center space-x-3">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
               <input
                 type="text"
                 value={pagesInput}
@@ -196,7 +187,7 @@ export default function RemovePagesTool({ faqs }) {
                   setPagesInput(e.target.value);
                   setIsSuccess(false);
                 }}
-                className="w-full max-w-xs border border-gray-300 rounded-xl p-3 text-gray-800 focus:outline-rose-500 font-medium"
+                className="w-full sm:max-w-xs border border-gray-300 rounded-xl p-3 text-gray-800 focus:outline-rose-500 font-medium"
                 placeholder="e.g. 1, 3-4"
               />
               <span className="text-xs text-gray-400">Total available: 1 to {pageCount}</span>
@@ -213,6 +204,7 @@ export default function RemovePagesTool({ faqs }) {
           )}
 
           <button
+            type="button"
             onClick={removePages}
             disabled={isProcessing}
             className={`w-full py-4 rounded-2xl font-bold text-white text-lg transition-all ${
@@ -223,107 +215,6 @@ export default function RemovePagesTool({ faqs }) {
           </button>
         </div>
       )}
-
-      {/* SEO & Rich Content Area */}
-      <div className="mt-20 border-t border-gray-200 pt-16">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-3">How to Delete Pages from a PDF Online</h2>
-          <p className="text-gray-600">Eliminate unwanted sheets and blank pages in 3 simple steps.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="w-10 h-10 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center font-bold mx-auto mb-4">1</div>
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Upload Document</h3>
-            <p className="text-sm text-gray-500">Drop the PDF you want to clean up into the upload area above.</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="w-10 h-10 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center font-bold mx-auto mb-4">2</div>
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Select Pages</h3>
-            <p className="text-sm text-gray-500">Enter comma-separated page numbers or ranges (e.g. 1, 4-6) to remove.</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="w-10 h-10 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center font-bold mx-auto mb-4">3</div>
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Download PDF</h3>
-            <p className="text-sm text-gray-500">The filtered PDF is compiled instantly in memory and downloaded.</p>
-          </div>
-        </div>
-
-        {/* Why Choose Us */}
-        <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why Remove PDF Pages with PDF Lab?</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="flex items-start space-x-3">
-              <ShieldCheck className="w-6 h-6 text-green-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Complete Privacy</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Files are processed entirely in browser memory. Nothing is uploaded to remote servers.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <Zap className="w-6 h-6 text-yellow-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Instant Deletion</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  No queue times or upload buffering. Operations finish in milliseconds.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <Sparkles className="w-6 h-6 text-blue-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Lossless Quality</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  The remaining pages keep their exact typography, sharpness, and metadata.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <Smartphone className="w-6 h-6 text-purple-500 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-gray-800 text-base">Works Everywhere</h4>
-                <p className="text-sm text-gray-500 mt-1">
-                  Accessible on iOS, Android, Windows, and Mac without installing software.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* FAQs */}
-        <div className="max-w-3xl mx-auto mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-2xl border border-gray-100">
-                <h3 className="font-bold text-gray-800 mb-2">{faq.q}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Related Tools */}
-        <div className="border-t border-gray-200 pt-10 text-center">
-          <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Related PDF Tools</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/split-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-rose-600 hover:border-rose-300 transition-colors">
-              Split PDF
-            </Link>
-            <Link href="/merge-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-rose-600 hover:border-rose-300 transition-colors">
-              Merge PDF
-            </Link>
-            <Link href="/rotate-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-rose-600 hover:border-rose-300 transition-colors">
-              Rotate PDF
-            </Link>
-            <Link href="/compress-pdf" className="px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:text-rose-600 hover:border-rose-300 transition-colors">
-              Compress PDF
-            </Link>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

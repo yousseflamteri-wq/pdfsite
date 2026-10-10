@@ -1,99 +1,171 @@
 import WatermarkPdfTool from './WatermarkPdfTool';
+import ArticleSeo from '@/components/ArticleSeo';
 import { siteUrl } from '../../lib/siteConfig';
 
 export const metadata = {
-  title: 'Add Watermark to PDF Free – Stamp Text on Every Page',
+  title: 'Add Watermark to PDF Online Free – Stamp Text on Every Page',
   description:
-    'Stamp custom text watermarks — CONFIDENTIAL, DRAFT, or your brand — onto every PDF page. No upload, no signup, 100% private in-browser PDF watermarking.',
+    'Stamp custom text watermarks — CONFIDENTIAL, DRAFT, or custom branding — onto every PDF page online for free. 100% private in-browser watermarking with zero file uploads.',
   alternates: {
-    canonical: `${siteUrl}/watermark-pdf`,
+    canonical: `${siteUrl || 'https://onlinepdflab.app'}/watermark-pdf`,
   },
   openGraph: {
-    title: 'Add Watermark to PDF Free – Custom Text Stamp, No Upload',
-    description: 'Add customized watermark text to all PDF pages locally in your browser with zero data uploads.',
-    url: `${siteUrl}/watermark-pdf`,
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Add Watermark to PDF Free – No Upload Required',
-    description: 'Stamp CONFIDENTIAL, DRAFT or custom text on PDF pages. Free & private.',
+    title: 'Add Watermark to PDF Online Free – Stamp Text on Every Page',
+    description:
+      'Add custom watermark stamps to your PDF documents directly in your browser. 100% private, no signup, no file uploads.',
+    url: `${siteUrl || 'https://onlinepdflab.app'}/watermark-pdf`,
+    type: 'website',
   },
 };
 
-const faqs = [
-  {
-    q: 'How does client-side PDF watermarking work?',
-    a: 'Our tool embeds text layers and vector rotation transformations directly into your document inside browser memory using WebAssembly. Your files are never uploaded or transmitted to any server.',
-  },
-  {
-    q: 'Can I customize the watermark text and opacity?',
-    a: 'Yes. You can write any customized text (such as CONFIDENTIAL, DRAFT, COPY, or your company name) and adjust the opacity slider to ensure the watermark remains clearly visible without obscuring underlying text.',
-  },
-  {
-    q: 'Will the watermark be applied to every page?',
-    a: 'Yes. The watermark is automatically stamped across every single page of your document at a diagonal angle, centered perfectly on each page canvas.',
-  },
-  {
-    q: 'Are my sensitive documents kept private?',
-    a: 'Absolutely. Because all processing executes 100% in your device memory (RAM), no document content, text, or file data is ever stored, analyzed, or sent to external servers.',
-  },
-  {
-    q: 'Can I watermark password-protected PDFs?',
-    a: 'If a PDF document has an active open password, you need to unlock it first before applying watermarks so the page elements can be accessed.',
-  },
-  {
-    q: 'Does adding a watermark reduce document quality?',
-    a: 'No. The watermark is rendered as a vector typography overlay. Original high-resolution images, document fonts, and vector paths remain untouched.',
-  },
-];
-
 export default function Page() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'Add Watermark to PDF',
-    applicationCategory: 'UtilitiesApplication',
-    operatingSystem: 'Any',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
-    url: `${siteUrl}/watermark-pdf`,
-    featureList: [
-      'Custom watermark text (CONFIDENTIAL, DRAFT, etc.)',
-      'Adjustable opacity and font size',
-      'Applied to all pages at diagonal angle',
-      'Vector overlay — no quality reduction',
-      'Client-side only — no file upload',
-    ],
-    description: 'Free client-side tool to stamp custom watermark text across PDF document pages.',
-  };
+  const articleData = {
+    title: 'How to Add a Watermark to a PDF Online for Free',
+    intro:
+      'Need to protect confidential contracts, mark draft documents, or prevent unauthorized distribution of your work? Our free online PDF watermarking tool lets you stamp custom text—such as CONFIDENTIAL, DRAFT, COPY, or your company name—across every page of your PDF in seconds. All processing takes place locally in your browser memory, ensuring your private paperwork never touches external servers.',
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: f.a,
+    sections: [
+      {
+        heading: 'How to Watermark PDF Files in 4 Simple Steps',
+        content:
+          'Stamping custom watermark text on your documents takes only moments without needing desktop software or an account:',
+        list: [
+          {
+            title: 'Step 1: Upload your PDF.',
+            text: 'Drag and drop your PDF file into the secure drop zone above or select it from your device.',
+          },
+          {
+            title: 'Step 2: Customize your watermark text.',
+            text: 'Type your desired stamp wording (e.g. CONFIDENTIAL, DRAFT, SAMPLE, or a company title).',
+          },
+          {
+            title: 'Step 3: Adjust opacity and transparency.',
+            text: 'Use the opacity slider to ensure the watermark is bold enough to protect your work without hiding underlying text.',
+          },
+          {
+            title: 'Step 4: Download your watermarked PDF.',
+            text: 'Click "Download Watermarked PDF". The vector stamp is fused into all pages in browser memory and saved immediately.',
+          },
+        ],
       },
-    })),
+      {
+        heading: 'Why Add Watermarks with PDF Lab? (Key Advantages)',
+        content:
+          'Unlike traditional cloud editors that upload your sensitive documents to remote servers, PDF Lab operates on a private client-side engine:',
+        list: [
+          {
+            title: 'Complete Document Privacy:',
+            text: 'Your contracts, legal drafts, and creative portfolios never leave your web browser. Zero server transmission or data logging.',
+          },
+          {
+            title: 'No Added Tool Watermarks:',
+            text: 'Many free online services force their own logo watermark onto your files. PDF Lab stamps only what you specify—100% clean output.',
+          },
+          {
+            title: 'Lossless Vector Overlay:',
+            text: 'The watermark is rendered as a crisp vector text layer. Original fonts, illustrations, and scan quality are preserved without raster recompression.',
+          },
+          {
+            title: 'Unlimited Free Use:',
+            text: 'No subscription prompts, account creation, or document quotas. Watermark as many files as you need at zero cost.',
+          },
+        ],
+      },
+      {
+        heading: 'Common Scenarios for Watermarking PDFs',
+        content:
+          'Adding a diagonal text watermark is standard practice across legal, creative, and business workflows:',
+        list: [
+          {
+            title: 'Draft Agreements & Proposals:',
+            text: 'Stamp "DRAFT" across contracts during negotiation phases to ensure unapproved terms are not executed.',
+          },
+          {
+            title: 'Confidential Business Audits:',
+            text: 'Mark financial summaries, board decks, and internal reports as "CONFIDENTIAL" before circulation.',
+          },
+          {
+            title: 'Copyright & Intellectual Property:',
+            text: 'Protect eBooks, whitepapers, design portfolios, and training decks from unauthorized distribution.',
+          },
+          {
+            title: 'Sample Invoices & Receipts:',
+            text: 'Stamp "SAMPLE", "SPECIMEN", or "PAID" on billing records to prevent double-processing or billing fraud.',
+          },
+        ],
+      },
+      {
+        heading: 'Does Adding a Watermark Reduce Document Quality?',
+        content:
+          'No. Our watermarking engine embeds the stamp directly into the PDF coordinate system using vector typography. The existing page content streams, images, and embedded fonts remain untouched and 100% lossless, while the watermark is layered seamlessly over the canvas.'
+      },
+    ],
+
+    faqs: [
+      {
+        question: 'How do I add a watermark to all pages of a PDF?',
+        answer:
+          'Drag and drop your PDF into the tool above, type your custom watermark text (like CONFIDENTIAL or DRAFT), choose your opacity level, and click "Download Watermarked PDF". The stamp will be automatically applied at a 45-degree diagonal across every page.',
+      },
+      {
+        question: 'Can I adjust the opacity and transparency of the watermark?',
+        answer:
+          'Yes. Use the opacity slider to set transparency from 10% (subtle background watermark) up to 80% (prominent stamp). Around 30% is standard for keeping underlying text legible.',
+      },
+      {
+        question: 'Does PDF Lab add its own branding or watermark to my files?',
+        answer:
+          'No, never. Unlike other online converters that stamp their service logo on your pages, PDF Lab applies strictly the text you wrote and leaves your documents professional and clean.',
+      },
+      {
+        question: 'Does adding a watermark reduce document quality or resolution?',
+        answer:
+          'No. The watermark is applied as a native vector text overlay. Your document fonts, vector graphics, and high-resolution images retain their original quality without recompression.',
+      },
+      {
+        question: 'Can I watermark password-protected PDFs?',
+        answer:
+          'If a PDF has an active open password, you must unlock it before applying watermarks so the page elements and structure can be accessed.',
+      },
+      {
+        question: 'Are my sensitive documents uploaded to any server?',
+        answer:
+          'No. All processing runs locally inside your browser memory using client-side JavaScript. Your files are never uploaded, stored, or analyzed on remote servers.',
+      },
+      {
+        question: 'Can I watermark PDFs on mobile (iPhone or Android)?',
+        answer:
+          'Yes. Our tool is fully responsive and runs smoothly in mobile web browsers such as Safari and Chrome without needing any external apps.',
+      },
+    ],
+
+    relatedTools: [
+      { label: 'Protect PDF', href: '/protect-pdf' },
+      { label: 'Sign PDF', href: '/sign-pdf' },
+      { label: 'Rotate PDF', href: '/rotate-pdf' },
+      { label: 'Merge PDF', href: '/merge-pdf' },
+      { label: 'Compress PDF', href: '/compress-pdf' },
+      { label: 'Split PDF', href: '/split-pdf' },
+    ],
   };
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <WatermarkPdfTool faqs={faqs} />
-    </>
+    <main className="min-h-screen bg-slate-50">
+      <div className="pt-24 pb-16">
+        {/* 1. الأداة التفاعلية الفوق */}
+        <div className="max-w-5xl mx-auto px-4 mb-16">
+          <WatermarkPdfTool />
+        </div>
+
+        {/* 2. مقال السيو والأسئلة الشائعة + الروابط الداخلية */}
+        <ArticleSeo
+          title={articleData.title}
+          intro={articleData.intro}
+          sections={articleData.sections}
+          faqs={articleData.faqs}
+          relatedTools={articleData.relatedTools}
+        />
+      </div>
+    </main>
   );
 }

@@ -1,93 +1,177 @@
 import PdfToTextTool from './PdfToTextTool';
+import ArticleSeo from '@/components/ArticleSeo';
 import { siteUrl } from '../../lib/siteConfig';
 
 export const metadata = {
-  title: 'PDF to Text Converter – Extract Text from PDF Free',
+  title: 'PDF to Text Converter – Extract Text from PDF Online Free',
   description:
-    'Extract selectable text from any PDF instantly. Copy to clipboard or download as .txt. No upload, no signup — free in-browser PDF text extraction.',
+    'Extract selectable text from PDF documents instantly. Copy text or download as a .txt file. 100% private, client-side processing with zero file uploads.',
   alternates: {
-    canonical: `${siteUrl}/pdf-to-text`,
+    canonical: `${siteUrl || 'https://onlinepdflab.app'}/pdf-to-text`,
   },
   openGraph: {
-    title: 'PDF to Text – Extract Text from PDF Online Free',
-    description: 'Copy or download the text of your PDF in seconds. No upload, no signup, completely private.',
-    url: `${siteUrl}/pdf-to-text`,
-  },
-  twitter: {
-    card: 'summary',
-    title: 'PDF to Text Free – Extract Text Without Upload',
-    description: 'Extract text from PDFs in your browser. Free, private, no signup.',
+    title: 'PDF to Text Converter – Extract Text from PDF Online Free',
+    description:
+      'Extract editable text from any PDF document in seconds. 100% in-browser, secure, and private.',
+    url: `${siteUrl || 'https://onlinepdflab.app'}/pdf-to-text`,
+    type: 'website',
   },
 };
 
-const faqs = [
-  {
-    q: 'How do I extract text from a PDF?',
-    a: 'Upload your PDF and the text of every page appears automatically. Then copy it to your clipboard or download it as a .txt file.',
-  },
-  {
-    q: 'Does it work on scanned PDFs?',
-    a: 'Only if the PDF contains real, selectable text. A scanned PDF is just pictures of pages, so there is no text to extract. When we detect this we tell you, and you can use our OCR PDF tool to recognise text from the scanned images instead.',
-  },
-  {
-    q: 'Will the formatting be preserved?',
-    a: 'The result is plain text. Line breaks and paragraph gaps are reconstructed as closely as possible, but fonts, images and table borders are not included. Multi-column pages and tables may come out as flowing lines of text.',
-  },
-  {
-    q: 'Does it support Arabic, French and other languages?',
-    a: 'Yes, as long as the PDF stores the text as real characters. The reading order of right-to-left text depends on how the PDF was created, so check the result for important documents.',
-  },
-  {
-    q: 'Is there a file size or page limit?',
-    a: 'There is no limit set by us. Very large PDFs depend on your device memory and may take longer, because everything is processed locally in your browser.',
-  },
-  {
-    q: 'Is my PDF uploaded to a server?',
-    a: 'No. The extraction runs inside your browser, so your document is never uploaded, stored or shared. That makes it safe for contracts and other private files.',
-  },
-];
-
 export default function Page() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'PDF to Text Converter',
-    applicationCategory: 'UtilitiesApplication',
-    operatingSystem: 'Any',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
-    url: `${siteUrl}/pdf-to-text`,
-    featureList: [
-      'Extract selectable text from PDFs',
-      'Copy to clipboard or download as .txt',
-      'Multi-language support including Arabic and RTL',
-      'Detects and alerts on scanned/image-only PDFs',
-      'Client-side only — no file upload',
-    ],
-    description: 'Free client-side tool to extract text from PDF files and download it as a TXT file.',
-  };
+  const articleData = {
+    title: 'How to Extract Text from PDF Online for Free',
+    intro:
+      'Need to extract content from an eBook, research paper, contract, or report without retyping? Our free online PDF to Text converter reads selectable characters inside your PDF and extracts them into clean, editable plain text. With instant in-browser execution, your files are never uploaded to any cloud server.',
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: f.a,
+    sections: [
+      {
+        heading: 'How to Convert PDF to Text in 3 Simple Steps',
+        content:
+          'Extracting text from any digital PDF document is fast and requires no third-party software installation:',
+        list: [
+          {
+            title: 'Step 1: Select your PDF.',
+            text: 'Drag and drop your PDF file into the drop zone above, or tap to choose it from your phone or PC.',
+          },
+          {
+            title: 'Step 2: Instant local parsing.',
+            text: 'Our browser-based PDF engine parses every page instantly, rebuilding text lines and paragraphs in local memory.',
+          },
+          {
+            title: 'Step 3: Copy or download as TXT.',
+            text: 'Review the text in the preview area, copy it directly to your clipboard, or download it as an organized .txt file.',
+          },
+        ],
       },
-    })),
+      {
+        heading: 'PDF to Text vs. OCR: Which Tool Do You Need?',
+        content:
+          'Understanding the structure of your PDF file ensures you get the fastest and most accurate output:',
+        list: [
+          {
+            title: 'Use PDF to Text for Native PDFs:',
+            text: 'If your document was exported directly from Microsoft Word, Google Docs, or an online editor, it contains selectable characters. This tool extracts that text instantly without any delay.',
+          },
+          {
+            title: 'Use OCR for Scanned Documents & Photos:',
+            text: 'If your PDF is a flat scan or photograph of paper, there are no digital character codes to extract. Our tool will automatically detect this and guide you to our OCR PDF tool to perform character recognition.',
+          },
+        ],
+      },
+      {
+        heading: 'Why Extract Text with PDF Lab? (Key Benefits)',
+        content:
+          'Traditional online converters upload your confidential files to remote servers. PDF Lab protects your workflow with client-side engineering:',
+        list: [
+          {
+            title: 'Complete Document Privacy:',
+            text: 'Extraction executes locally in your browser memory. Your contracts, financial summaries, and private notes never leave your device.',
+          },
+          {
+            title: 'Zero Latency & Queue Times:',
+            text: 'Because processing does not depend on server bandwidth, large multi-page documents are parsed at hardware speed.',
+          },
+          {
+            title: 'Full Multilingual Support:',
+            text: 'Extracts unicode text across English, Arabic (RTL), French, Spanish, German, and many other languages cleanly.',
+          },
+          {
+            title: 'No Sign-ups or Restrictions:',
+            text: 'Enjoy unrestricted text extraction without accounts, watermarks, paywalls, or daily document quotas.',
+          },
+        ],
+      },
+      {
+        heading: 'Common Use Cases for PDF Text Extraction',
+        content:
+          'Converting PDF to text streamlines productivity across everyday professional and academic tasks:',
+        list: [
+          {
+            title: 'Academic Research & Citations:',
+            text: 'Copy quotes and references from research articles and dissertations without frustrating line break formatting.',
+          },
+          {
+            title: 'Content Translation:',
+            text: 'Quickly export paragraphs into translation tools and document editors that do not accept PDF files.',
+          },
+          {
+            title: 'Data Analysis & Word Counts:',
+            text: 'Clean raw textual data for keyword frequency analysis, coding scripts, or natural language processing.',
+          },
+          {
+            title: 'Accessibility & Screen Readers:',
+            text: 'Generate lightweight plain text documents compatible with basic text editors and assistive reading devices.',
+          },
+        ],
+      },
+    ],
+
+    faqs: [
+      {
+        question: 'How do I extract text from a PDF file?',
+        answer:
+          'Simply drag and drop your PDF into the upload area above. The text will be extracted automatically page-by-page. You can then copy it with one click or download it as a .txt file.',
+      },
+      {
+        question: 'Does this tool work on scanned PDFs or images?',
+        answer:
+          'This tool extracts native selectable text. If your PDF is a photo scan, it will detect this and recommend using our OCR PDF tool instead, which is designed specifically to recognize text from scanned images.',
+      },
+      {
+        question: 'Will formatting, fonts, and tables be preserved?',
+        answer:
+          'The output is clean plain text (.txt). Line breaks and paragraphs are preserved as closely as possible, but decorative fonts, images, and complex table borders are stripped away.',
+      },
+      {
+        question: 'Does this tool support Arabic and right-to-left text?',
+        answer:
+          'Yes! The extractor supports UTF-8 characters including Arabic, Hebrew, French accents, and other multilingual scripts, provided the original PDF stored them as selectable digital characters.',
+      },
+      {
+        question: 'Is my PDF uploaded to a server?',
+        answer:
+          'No. All text parsing happens directly inside your web browser using client-side JavaScript. Your documents never touch external servers or cloud databases.',
+      },
+      {
+        question: 'Is there a limit on file size or page count?',
+        answer:
+          'No artificial limits are imposed. You can extract text from large multi-page PDFs as long as your device RAM has sufficient capacity to read the file.',
+      },
+      {
+        question: 'Is this PDF to Text converter free?',
+        answer:
+          'Yes, 100% free with no registration, no subscriptions, and no hidden limitations.',
+      },
+    ],
+
+    relatedTools: [
+      { label: 'OCR PDF (Scanned to Text)', href: '/ocr-pdf' },
+      { label: 'PDF to JPG', href: '/pdf-to-jpg' },
+      { label: 'Compress PDF', href: '/compress-pdf' },
+      { label: 'Merge PDF', href: '/merge-pdf' },
+      { label: 'Split PDF', href: '/split-pdf' },
+      { label: 'Sign PDF', href: '/sign-pdf' },
+    ],
   };
 
   return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <PdfToTextTool faqs={faqs} />
-    </>
+    <main className="min-h-screen bg-slate-50">
+      <div className="pt-24 pb-16">
+        {/* 1. الأداة التفاعلية الفوق */}
+        <div className="max-w-5xl mx-auto px-4 mb-16">
+          <PdfToTextTool />
+        </div>
+
+        {/* 2. مقال السيو والأسئلة الشائعة + الروابط الداخلية */}
+        <ArticleSeo
+          title={articleData.title}
+          intro={articleData.intro}
+          sections={articleData.sections}
+          faqs={articleData.faqs}
+          relatedTools={articleData.relatedTools}
+        />
+      </div>
+    </main>
   );
 }
