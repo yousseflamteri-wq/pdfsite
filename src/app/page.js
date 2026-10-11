@@ -1,10 +1,13 @@
+import Link from 'next/link';
 import ToolsGrid from '../components/ToolsGrid';
 import { siteUrl, siteName } from '../lib/siteConfig';
 
 export const metadata = {
-  title: 'PDF Lab – Free Online In-Browser PDF Tools',
+  title: {
+    absolute: 'Online PDF Lab – Free Private PDF Tools in Your Browser',
+  },
   description:
-    'Free online PDF tools. Merge, split, compress, convert, sign, and organize PDF documents directly inside your browser without uploading files to remote servers.',
+    'Online PDF Lab offers free PDF tools to merge, split, compress, convert, sign, and organize documents directly in your browser, with no uploads to remote servers.',
   alternates: {
     canonical: siteUrl,
   },
@@ -16,16 +19,16 @@ const homeFaqs = [
     a: 'Yes. All file processing runs entirely inside your web browser using local resources. Documents are never transmitted or stored on any external server.',
   },
   {
-    q: 'Do I need an account or subscription to use PDF Lab?',
-    a: 'No. All utilities are accessible directly in the browser with no account creation, credits, or subscriptions required.',
+    q: 'Do I need an account or subscription to use Online PDF Lab?',
+    a: 'No. All utilities on Online PDF Lab are accessible directly in the browser with no account creation, credits, or subscriptions required.',
   },
   {
     q: 'Is there any file size limit for merging or compressing?',
     a: 'Since processing takes place directly on your computer or phone, limits depend solely on your device memory rather than cloud server restrictions.',
   },
   {
-    q: 'Can I use these tools on mobile devices?',
-    a: 'Yes. PDF Lab is fully responsive and functions on modern mobile browsers across Android and iOS.',
+    q: 'Can I use Online PDF Lab on mobile devices?',
+    a: 'Yes. Online PDF Lab is fully responsive and functions on modern mobile browsers across Android and iOS.',
   },
 ];
 
@@ -71,8 +74,11 @@ export default function HomePage() {
       />
 
       <div className="max-w-6xl mx-auto py-12 px-4 sm:px-6">
-        {/* Simple & Clean Hero Section */}
+        {/* Hero Section with Brand Pill */}
         <section className="text-center max-w-3xl mx-auto mb-10">
+          <span className="inline-block py-1 px-3.5 mb-3 text-xs font-semibold tracking-wider text-blue-700 uppercase bg-blue-50 border border-blue-200 rounded-full">
+            {siteName}
+          </span>
           <h1 className="text-4xl sm:text-5xl font-black text-gray-900 tracking-tight mb-4">
             Free Online PDF Tools
           </h1>
@@ -83,6 +89,23 @@ export default function HomePage() {
 
         {/* Category pills + tools grid */}
         <ToolsGrid />
+
+        {/* Brand Explainer Section (Crucial for Brand Entity Ranking) */}
+        <section className="py-12 border-t border-gray-200 max-w-4xl mx-auto">
+          <div className="bg-blue-50/60 border border-blue-100 rounded-2xl p-6 sm:p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">
+              What is Online PDF Lab?
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Online PDF Lab is a free, privacy-first suite of web-based PDF utilities designed to handle everyday document workflows locally. Unlike traditional web converters that require uploading confidential files to third-party servers, Online PDF Lab executes all file transformations entirely inside your web browser using modern client-side processing.
+            </p>
+            <p className="text-sm font-semibold text-blue-600 hover:text-blue-800">
+              <Link href="/about" className="inline-flex items-center gap-1">
+                Learn more about our mission and client-side architecture &rarr;
+              </Link>
+            </p>
+          </div>
+        </section>
 
         {/* Clean Features Section */}
         <section className="py-12 border-t border-gray-200 max-w-4xl mx-auto">

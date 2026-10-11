@@ -4,13 +4,16 @@ import Navbar from '../components/Navbar';
 import { siteUrl, siteName, defaultDescription } from '../lib/siteConfig';
 import { Toaster } from 'react-hot-toast'; // استيراد مكتبة الإشعارات
 
+const defaultTitle = `${siteName} – Free Private PDF Tools in Your Browser`;
+
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Free Online PDF Tools – 100% Private In-Browser PDF Editor',
+    default: defaultTitle,
     template: `%s | ${siteName}`,
   },
   description: defaultDescription,
+  applicationName: siteName,
   icons: {
     icon: '/logo.svg',
     shortcut: '/logo.svg',
@@ -25,7 +28,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     siteName,
-    title: 'Free Online PDF Tools – 100% Private In-Browser PDF Editor',
+    title: defaultTitle,
     description: defaultDescription,
     url: siteUrl,
     images: [
@@ -39,16 +42,41 @@ export const metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'Free Online PDF Tools – 100% Private In-Browser PDF Editor',
+    title: defaultTitle,
     description: defaultDescription,
     images: [`${siteUrl}/logo.svg`],
   },
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteName,
+  alternateName: ['PDF Lab', 'OnlinePDFLab'],
+  url: siteUrl,
+};
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: siteName,
+  url: siteUrl,
+  logo: `${siteUrl}/logo.svg`,
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+
         <Navbar />
 
         <div className="flex-1">{children}</div>
@@ -62,7 +90,7 @@ export default function RootLayout({ children }) {
                   <span className="font-bold text-lg text-gray-900">Lab</span>
                 </div>
                 <p className="text-sm text-gray-500 max-w-sm leading-relaxed mb-4">
-                  Free and completely private online PDF tools. All operations run directly in your web browser—no uploads, no server storage, total data confidentiality.
+                  {siteName} offers free and completely private PDF tools. All operations run directly in your web browser—no uploads, no server storage, total data confidentiality.
                 </p>
               </div>
 
@@ -107,12 +135,12 @@ export default function RootLayout({ children }) {
         </footer>
 
         {/* عرض الإشعارات لتحت فـ اليمين */}
-        <Toaster 
-          position="bottom-right" 
+        <Toaster
+          position="bottom-right"
           toastOptions={{
             duration: 3000,
             style: { background: '#333', color: '#fff' },
-          }} 
+          }}
         />
       </body>
     </html>
