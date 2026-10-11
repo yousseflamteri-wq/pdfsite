@@ -1,8 +1,11 @@
-import { siteName } from '../../lib/siteConfig';
+import { siteName, siteUrl } from '../../lib/siteConfig';
 
 export const metadata = {
   title: `Contact Us | ${siteName}`,
   description: 'Get in touch with us for any questions or support.',
+  alternates: {
+    canonical: `${siteUrl || 'https://onlinepdflab.app'}/contact`,
+  },
 };
 
 export default function ContactPage() {
@@ -16,7 +19,7 @@ export default function ContactPage() {
       <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
         <form action="https://api.web3forms.com/submit" method="POST" className="space-y-6">
           
-          {/* الساروت ديال Web3Forms اللي خديتي دابا */}
+          {/* الساروت ديال Web3Forms */}
           <input type="hidden" name="access_key" value="7ca29d58-96be-4f26-8fe7-7259ecd1e73f" />
           
           <input type="hidden" name="redirect" value="https://onlinepdflab.app" />
